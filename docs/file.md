@@ -7,8 +7,8 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 | Content Cell  | Content Cell  |
 
 ### Schematic
-|Friendly Name| Key     | Sample Values| Data Type| Notes   |
-| ----------- | ------- | ------------ | -------- | ------- |
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| ------------- | --- | ------------- | --------- | ----- |
 |Type|`t`|`c`|String|Always type ‘c’|
 |Name|`n`|`Kevin`|String|Name as entered in WhatsPac Client|
 |Callsign|`c`|`M0AHN`|String|Callsign as entered in WhatsPac Client, minus the SSID if added|
@@ -17,7 +17,9 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Edit|`led`|`1739318078`|Number|Timestamp of last edit - seconds since epoch|
 |Version|`v`|`0.44`|Number|Version of client, used for logging only|
 |Channel Connect|`cc`|`[]`|Array of Objects|Contains one JSON object per channel subscribed|
-|Channel Connect Objects|
+
+
+|Channel Connect Objects|-|-|-|-|
 |Channel Id|`cid`|`2`|Number|The Channel Id|
 |Last Post|`lp`|`1740251305826`|Number|Timestamp of last message - milliseconds since epoch|
 |Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
