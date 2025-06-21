@@ -56,9 +56,17 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 - Replication
 
 ## How WPS Works - An Overview
+Application opens an AX:25 connection to the node hosting WPS
+Invokes the cusotmer application
+TCP Socket connection to BPQ or Xrouter
+WPS recieves JSON objects
+WPS responds with JSON objects
+
 Must add a /r
 WhatsPac strips whitespace
 Strips SSID
+Integrity Checks
+
 WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
 1. WPS receives a new message from a connected user (the sender)
 2. It writes the message to the database and returns a delivery receipt to the sender. It then decides:
