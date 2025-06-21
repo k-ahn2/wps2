@@ -80,7 +80,7 @@ This is the first data exchange after connect - the client sends a type ‘c’ 
 Upon receipt, the server:
 1. Uses the timestamps to establish the new messages and/or posts to be sent to the client
 2. Returns a type `c` object to the client, containing the new message and post counts
-3. Uses the timestamps to return:
+3. Then uses the timestamps to return:
    - new messages
    - new message emojis
    - new message edits
