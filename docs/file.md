@@ -15,7 +15,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Channel Connect|`cc`|`[]`|Array of Objects|Contains one JSON object per channel subscribed|
 
 
-|Channel Connect Objects|
+|Channel Connect Objects|||||
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Channel Id|`cid`|`2`|Number|The Channel Id|
 |Last Post|`lp`|`1740251305826`|Number|Timestamp of last message - milliseconds since epoch|
