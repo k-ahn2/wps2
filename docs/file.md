@@ -10,8 +10,8 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 |-------------|-------------|-------------|-------------|-------------|
 
-| First Header  | Second Header | Second Header |
-| ------------- | ------------- | ------------- |
+| First Header  | Second Header | Second Header | Second Header | Second Header |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
 |Type|`t`|`c`|String|Always type c|
 |Name|`n`|`Kevin`|String|Name as entered in WhatsPac Client|
 |Callsign|`c`|`M0AHN`|String|Callsign as entered in WhatsPac Client, minus the SSID if added|
