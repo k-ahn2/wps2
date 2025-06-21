@@ -6,8 +6,8 @@ WPS was built to enable the WhatsPac front end, but implements a protocol that c
 
 as a custom application, , and optimised for Packet Radio end user applications, capable of operating effectively over 1200 baud links or greater and without any internet dependency.
 
-[!IMPORTANT]
-WPS is continuing to evolve on a frequent basis - please become a watcher or collaborator to stay in touch
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
 ## Functionality
 - **Direct Messaging:** Message send and receive (similar function to SMS, WhatsApp, Signal or iMessage)
@@ -23,7 +23,8 @@ WPS is continuing to evolve on a frequent basis - please become a watcher or col
 - **Name Change:** WPS distrbutes name updates  
 - **Last Seen Times:** See when users you have messaged were last connected
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](/assets/images/wps.jpg)
+## Schematic
+![WPS Schematic](/assets/images/wps.jpg)
 
 ## General
 1. How WPS Works - An Overview
@@ -33,8 +34,6 @@ WPS is continuing to evolve on a frequent basis - please become a watcher or col
 
 ## Protocol Definition
 1. [Type C - Connect](#type-c---connect).
-
-
 
 WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
 1. WPS receives a new message from a connected user (the sender)
