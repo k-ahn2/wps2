@@ -1,11 +1,6 @@
 ## Type C - Connect
 This is the first data exchange after connect - the client sends a Type ‘c’ object to the server, which uses this data to determine the client state and what to return
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
 ### Schematic
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
@@ -20,7 +15,8 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Channel Connect|`cc`|`[]`|Array of Objects|Contains one JSON object per channel subscribed|
 
 
-|Channel Connect Objects|-|-|-|-|
+|Channel Connect Objects|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
 |Channel Id|`cid`|`2`|Number|The Channel Id|
 |Last Post|`lp`|`1740251305826`|Number|Timestamp of last message - milliseconds since epoch|
 |Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
