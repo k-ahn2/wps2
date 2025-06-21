@@ -9,6 +9,21 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 > [!IMPORTANT]
 > WPS is in active development and is changing on a regular basis - please remember to watch the repo to be alerted when there are new versions
 
+## Overview and Setup
+1. WPS Schematic
+2. Key functions
+3. Server Capabilities
+4. [How WPS Works - An Overview](#how-wps-works---an-overview)
+5. Installation
+6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-javascript-example)
+7. Node Integration - Interfacing with BPQ Xrouter
+2. Common Processing Considerations
+3. Configuring `env.json`
+
+## Protocol Definition
+1. [Type C - Connect](#type-c---connect)
+
+
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
 
@@ -35,17 +50,6 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 - **Data Batching:** WPS batches bulk post downloads, optimising compression and delivery
 - **Logging:** WPS includes error logging by defauly, with extensive info logging configurable if required
 - **Run as Service:** WPS runs as a standard linux service (and assume can on Windows too)
-
-## General
-1. [How WPS Works - An Overview](#how-wps-works---an-overview)
-2. Installation
-3. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-javascript-example)
-4. Node Integration - Interfacing with BPQ Xrouter
-2. Common Processing Considerations
-3. Configuring `env.json`
-
-## Protocol Definition
-1. [Type C - Connect](#type-c---connect)
 
 ## How WPS Works - An Overview
 
