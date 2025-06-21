@@ -23,8 +23,12 @@ as a custom application, , and optimised for Packet Radio end user applications,
 - **Name Change:** WPS distrbutes name updates  
 - **Last Seen Times:** See when users you have messaged were last connected
 
+<img src="wps.jpg" alt="blah" width="50%" />
+
 ## Schematic
 ![WPS Schematic 2](wps.jpg)
+
+
 
 Must add a /r
 WhatsPac strips whitespace
