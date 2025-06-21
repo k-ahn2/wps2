@@ -22,11 +22,11 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
 |Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
 
-### JSON Exmaple
+### JSON Example
 <details>
 <summary>Show</summary>
 
-```
+```json
 {
    "t": "c",
    "n": "Kevin",
@@ -50,7 +50,6 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
       }
    ]
 }
-
 ```
 </details>
 
@@ -73,7 +72,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 <details>
 <summary>Show</summary>
 
-```
+```json
 {
    "t": "c",
    "w": 0,
@@ -90,6 +89,5 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
       }
    ]
 }
-
 ```
 </details>
