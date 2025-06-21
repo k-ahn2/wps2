@@ -23,7 +23,7 @@ as a custom application, , and optimised for Packet Radio end user applications,
 - **Name Change:** WPS distrbutes name updates  
 - **Last Seen Times:** See when users you have messaged were last connected
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](wps.jpg)
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](/assets/images/wps.jpg)
 
 ## General
 1. How WPS Works - An Overview
