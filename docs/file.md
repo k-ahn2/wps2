@@ -70,8 +70,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Unread Count|`uc`|`4`|Number|The number of unread posts in the channel
 
 ### JSON Example
-<details open>
-<summary>Show</summary>
+
 ```json
 {
    "t": "c",
@@ -90,4 +89,3 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
    ]
 }
 ```
-</details>
