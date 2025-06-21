@@ -23,7 +23,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
 
 ### JSON Example
-<details>
+<details open>
 <summary>Show</summary>
 
 
@@ -70,10 +70,8 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Unread Count|`uc`|`4`|Number|The number of unread posts in the channel
 
 ### JSON Example
-<details>
+<details open>
 <summary>Show</summary>
-
-
 ```json
 {
    "t": "c",
