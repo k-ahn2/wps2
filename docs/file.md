@@ -1,5 +1,77 @@
-# Type C - Connect (Bidirectional)
-## Overview
+# WPS - A Messaging Back End Service and Protocol for Packet Radio
+
+WPS is a backend service and protocol that provides messaging services over Packet Radio. Currently built to interface with a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
+
+WPS was built to enable the WhatsPac front end, but implements a protocol that could be used by any Packet Radio application
+
+as a custom application, , and optimised for Packet Radio end user applications, capable of operating effectively over 1200 baud links or greater and without any internet dependency.
+
+## Functionality
+- **Direct Messaging:** Message send and receive (similar function to SMS, WhatsApp, Signal or iMessage)
+- **Channels:** Post to themed channels (similar to a Facebook wall, Slack or Discord)
+- **Who is Online:** WPS updates clients when a user connects or disconnects
+- **Callsign Lookup:** Determine if a callsign is registered
+- **Emojis:** Include and react to messages and posts with Emojis
+- **Edits:** Edit messages and posts after sending
+- **User Registration:** New users are automatically registered
+- **Push Notifications:** Send users push notfications, if paired with the Packet Alerts app
+- **Version Control:** Advise the client a new software version is available
+- **Delivery Receipts:** WPS responds to new and edited posts with a delivery receipt
+- **Name Change:** WPS distrbutes name updates  
+- **Last Seen Times:** See when users you have messaged were last connected
+
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
+
+## General
+1. How WPS Works - An Overview
+2. Sending a JSON object to WPS
+2. Common Processing Considerations
+3. Configuring `env.json`
+
+## Protocol Definition
+1. [Type C - Connect](#type-c---connect).
+
+
+
+WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
+1. WPS receives a new message from a connected user (the sender)
+2. It writes the message to the database and returns a delivery receipt to the sender. It then decides:
+   - if the recipient is connected, send in real-time
+   - if the recipient is not connected, check whether registered for push notifications and end processing
+   - if the recipient is not registered, end processing
+3. The recipient connects and sends its last message timestamps, then the server will return the new message
+
+
+- JSON: 
+- Compression: 
+- Run as a Service: 
+- Data Batching: 
+- Backup / Restore: 
+- Logging: 
+
+REST APIs
+Replication
+
+
+WPS works by:
+
+
+- Automated user registration
+- 
+- dsf
+- dsfdsfds
+- fdsfds
+- f
+
+WPS is currently designed for connectivity to BPQ or Xrouter as a custom application, connected via a TCP Port, but in future could support access via REST APIs for direct IP network connections.
+
+
+
+
+
+
+## Type C - Connect
+### Overview
 This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
 
 Upon receipt, the server:
