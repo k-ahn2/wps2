@@ -51,7 +51,21 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 - **Logging:** WPS includes error logging by defauly, with extensive info logging configurable if required
 - **Run as Service:** WPS runs as a standard linux service (and assume can on Windows too)
 
+## Future
+- REST APIs
+- Replication
+
 ## How WPS Works - An Overview
+Must add a /r
+WhatsPac strips whitespace
+Strips SSID
+WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
+1. WPS receives a new message from a connected user (the sender)
+2. It writes the message to the database and returns a delivery receipt to the sender. It then decides:
+   - if the recipient is connected, send in real-time
+   - if the recipient is not connected, check whether registered for push notifications and end processing
+   - if the recipient is not registered, end processing
+3. The recipient connects and sends its last message timestamps, then the server will return the new message
 
 ## Sending a JSON object to WPS Javascript Example
 
@@ -68,46 +82,6 @@ const sendConnectString = {
 }
 ws.send(`${JSON.stringify(sendConnectString)}\r`)
 ```
-
-Must add a /r
-WhatsPac strips whitespace
-
-WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
-1. WPS receives a new message from a connected user (the sender)
-2. It writes the message to the database and returns a delivery receipt to the sender. It then decides:
-   - if the recipient is connected, send in real-time
-   - if the recipient is not connected, check whether registered for push notifications and end processing
-   - if the recipient is not registered, end processing
-3. The recipient connects and sends its last message timestamps, then the server will return the new message
-
-
-- JSON: 
-- Compression: 
-- Run as a Service: 
-- Data Batching: 
-- Backup / Restore: 
-- Logging: 
-
-REST APIs
-Replication
-
-
-WPS works by:
-
-
-- Automated user registration
-- 
-- dsf
-- dsfdsfds
-- fdsfds
-- f
-
-WPS is currently designed for connectivity to BPQ or Xrouter as a custom application, connected via a TCP Port, but in future could support access via REST APIs for direct IP network connections.
-
-
-
-
-
 
 ## Type C - Connect
 ### Overview
