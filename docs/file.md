@@ -22,7 +22,10 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
 |Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
 
-### JSON Example
+### JSON Exmaple
+<details>
+<summary>Show</summary>
+
 ```
 {
    "t": "c",
@@ -49,6 +52,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 }
 
 ```
+</details>
 
 ## Server to Client
 
@@ -65,7 +69,9 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Channel Id|`cid`|`2`|Number|The Channel Id
 |Unread Count|`uc`|`4`|Number|The number of unread posts in the channel
 
-### JSON Exmaple
+### JSON Example
+<details>
+<summary>Show</summary>
 
 ```
 {
@@ -86,3 +92,4 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 }
 
 ```
+</details>
