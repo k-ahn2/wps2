@@ -20,6 +20,7 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 8. Common Processing Considerations
 9. Configuring `env.json`
 10. Connect Sequence
+11. Files
 
 ## Protocol Definition
 1. [Type C - Connect](#type-c---connect)
