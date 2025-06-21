@@ -15,7 +15,7 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 3. Server Capabilities
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. Installation
-6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-\(javascript-example\))
+6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps---a-javascript-example)
 7. Node Integration - Interfacing with BPQ Xrouter
 8. Common Processing Considerations
 9. Configuring `env.json`
@@ -67,7 +67,7 @@ WPS is a reactive service - activity is only triggered upon receipt of an instru
    - if the recipient is not registered, end processing
 3. The recipient connects and sends its last message timestamps, then the server will return the new message
 
-## Sending a JSON object to WPS (Javascript Example)
+## Sending a JSON object to WPS - A Javascript Example
 
 ```javascript
 const sendConnectString = {
