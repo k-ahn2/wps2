@@ -6,8 +6,8 @@ WPS was built to enable the WhatsPac front end, but implements a protocol that c
 
 as a custom application, , and optimised for Packet Radio end user applications, capable of operating effectively over 1200 baud links or greater and without any internet dependency.
 
-> [!IMPORTANT]
-> WPS is continuing to evolve on a frequent basis - please become a watcher or collaborator to stay in touch
+[!IMPORTANT]
+WPS is continuing to evolve on a frequent basis - please become a watcher or collaborator to stay in touch
 
 ## Functionality
 - **Direct Messaging:** Message send and receive (similar function to SMS, WhatsApp, Signal or iMessage)
