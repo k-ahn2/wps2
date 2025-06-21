@@ -15,7 +15,7 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 3. Server Capabilities
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. Installation
-6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-(javascript-example))
+6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-\(javascript-example\))
 7. Node Integration - Interfacing with BPQ Xrouter
 8. Common Processing Considerations
 9. Configuring `env.json`
