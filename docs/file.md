@@ -23,9 +23,6 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
 
 ### JSON Example
-<details open>
-<summary>Show</summary>
-
 
 ```json
 {
@@ -52,7 +49,6 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
    ]
 }
 ```
-</details>
 
 ## Server to Client
 
@@ -79,12 +75,12 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
    "v": 0.44,
    "pc": [
       {
-         "cid":3,
-         "uc":1059
+         "cid": 3,
+         "uc": 1059
       },
       {
-         "cid":4,
-         "uc":167
+         "cid": 4,
+         "uc": 167
       }
    ]
 }
