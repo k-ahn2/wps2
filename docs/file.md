@@ -1,8 +1,22 @@
 # Type C - Connect (Bidirectional)
+## Overview
+This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
 
-This is the first data exchange after connect - the client sends a Type ‘c’ object to the server, which uses this data to determine the client state and what to return.
+Upon receipt, the server:
+1. Uses the timestamps to establish the new messages and/or posts to be sent to the client
+2. Returns a type `c` object to the client, containing the new message and post counts
+3. Uses the timestamps to return:
+   - new messages
+   - new message emojis
+   - new message edits
+   - new posts
+   - new post emojis
+   - new post edits
+
+See **Connect Sequence** for a detailed explanation of the subsequent connect process
 
 ## Client to Server
+This is the first data exchange after connect - the client sends a Type ‘c’ object to the server, which uses this data to determine the client state and what to return.
 
 ### Schematic
 
@@ -70,7 +84,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 ```json
 {
    "t": "c",
-   "w": 0,
+   "w": 1,
    "mc": 25,
    "v": 0.44,
    "pc": [
