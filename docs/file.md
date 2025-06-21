@@ -4,7 +4,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 ### Schematic
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
-| ------------- | :-----------: | :-----------: | ------------- | ------------- |
+| - | :-: | :-: | :-: | - |
 |Type|`t`|`c`|String|Always type c|
 |Name|`n`|`Kevin`|String|Name as entered in WhatsPac Client|
 |Callsign|`c`|`M0AHN`|String|Callsign as entered in WhatsPac Client, minus the SSID if added|
@@ -18,6 +18,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 |Last Post|`lp`|`1740251305826`|Number|Timestamp of last message - milliseconds since epoch|
 |Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
 |Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
+
 ### JSON Example
 ```
 {
