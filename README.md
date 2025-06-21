@@ -1,42 +1,72 @@
-# WPS - A Messaging Back End Service and Protocol for Packet Radio
+# WPS - A Messaging Service and Protocol for Packet Radio
 
 WPS is a backend service and protocol that provides messaging services over Packet Radio. Currently built to interface with a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
 
-WPS was built to enable the WhatsPac front end, but implements a protocol that could be used by any Packet Radio application
+WPS was built to enable the WhatsPac front end, but implements a protocol that could be used by any Packet Radio messaging application.
 
-as a custom application, , and optimised for Packet Radio end user applications, capable of operating effectively over 1200 baud links or greater and without any internet dependency.
+WPS is capable of operating effectively over 1200 baud links or greater and without any internet dependency.
 
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+> WPS is in active development and is changing on a regular basis - please remember to watch the repo to be alerted when there are new versions
+
+## WPS Schematic
+<img src="wps.jpg" alt="blah" width="500px"/>
+
+\* Supported via the Packet Alerts app, integrated with WhatsPac
 
 ## Functionality
-- **Direct Messaging:** Message send and receive (similar function to SMS, WhatsApp, Signal or iMessage)
-- **Channels:** Post to themed channels (similar to a Facebook wall, Slack or Discord)
+- **Direct Messaging:** Message send and receive (similar to SMS, WhatsApp, Signal or iMessage)
+- **Channels:** Post to themed channels (similar to a Rocket Chat, Slack or Discord)
 - **Who is Online:** WPS updates clients when a user connects or disconnects
-- **Callsign Lookup:** Determine if a callsign is registered
+- **Reply:** Users can sent new messages and posts, or reply to existing
 - **Emojis:** Include and react to messages and posts with Emojis
 - **Edits:** Edit messages and posts after sending
-- **User Registration:** New users are automatically registered
-- **Push Notifications:** Send users push notfications, if paired with the Packet Alerts app
-- **Version Control:** Advise the client a new software version is available
-- **Delivery Receipts:** WPS responds to new and edited posts with a delivery receipt
-- **Name Change:** WPS distrbutes name updates  
+- **User Registration:** New users are automatically registered upone connecting
+- **Push Notifications:** Send push notfications when there is new activity (if paired with the Packet Alerts app, currently via WhatsPac only)
+- **Packet Terminal:** Includes a traditional Packet Terminal for browsing the network
+- **Callsign Lookup:** Determine if a callsign is registered
+- **Name Change:** WPS distrbutes name updates when they change
 - **Last Seen Times:** See when users you have messaged were last connected
+- **Delivery Receipts:** WPS responds to new and edited posts with a delivery receipt, guaranteeing server delivery
+- **Version Control:** Advise the client a new software version is available, configurable within WPS in real-time
 
-## Schematic
-<img src="wps.jpg" alt="blah" width="50%" />
-
-Must add a /r
-WhatsPac strips whitespace
+## Other Capabilities
+- **Compression:** WPS compresses every packet before sending, then sends whichever of the compressed or uncompressed version is shorter
+- **Data Batching:** WPS batches bulk post downloads, optimising compression and delivery
+- **Logging:** WPS includes error logging by defauly, with extensive info logging configurable if required
+- **Run as Service:** WPS runs as a standard linux service (and assume can on Windows too)
 
 ## General
-1. How WPS Works - An Overview
-2. Sending a JSON object to WPS
+1. [How WPS Works - An Overview](#how-wps-works---an-overview)
+2. Installation
+3. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-javascript-example)
+4. Node Integration - Interfacing with BPQ Xrouter
 2. Common Processing Considerations
 3. Configuring `env.json`
 
 ## Protocol Definition
-1. [Type C - Connect](#type-c---connect).
+1. [Type C - Connect](#type-c---connect)
+
+## How WPS Works - An Overview
+
+## Sending a JSON object to WPS Javascript Example
+
+```javascript
+const sendConnectString = {
+   t: "c",
+   n: "Kevin",
+   c: "M0AHN",
+   lm: 123,
+   le: 456,
+   led: 789,
+   lhts: 123,
+   v: 0.44
+}
+ws.send(`${JSON.stringify(sendConnectString)}\r`)
+```
+
+Must add a /r
+WhatsPac strips whitespace
 
 WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect client. For example:
 1. WPS receives a new message from a connected user (the sender)
