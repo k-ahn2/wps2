@@ -7,6 +7,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 | Content Cell  | Content Cell  |
 
 ### Schematic
+
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Type|`t`|`c`|String|Always type c|
