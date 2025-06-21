@@ -1,8 +1,8 @@
 ## Type C - Connect
 This is the first data exchange after connect - the client sends a Type ‘c’ object to the server, which uses this data to determine the client state and what to return
 ### Schematic
-|Friendly Name|Key|Sample Values|Data Type|Notes|
-| -------- | ------- | -------- | ------- | ------- |
+|Friendly Name| Key     | Sample Values| Data Type| Notes   |
+| ----------- | ------- | ------------ | -------- | ------- |
 |Type|t|c|String|Always type ‘c’|
 |Name|n|Kevin|String|Name as entered in WhatsPac Client|
 |Callsign|c|M0AHN|String|Callsign as entered in WhatsPac Client, minus the SSID if added|
