@@ -17,12 +17,12 @@ WPS is capable of operating effectively over 1200 baud links or greater and with
 5. Installation
 6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps-javascript-example)
 7. Node Integration - Interfacing with BPQ Xrouter
-2. Common Processing Considerations
-3. Configuring `env.json`
+8. Common Processing Considerations
+9. Configuring `env.json`
+10. Connect Sequence
 
 ## Protocol Definition
 1. [Type C - Connect](#type-c---connect)
-
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
