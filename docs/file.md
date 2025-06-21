@@ -24,7 +24,7 @@ as a custom application, , and optimised for Packet Radio end user applications,
 - **Last Seen Times:** See when users you have messaged were last connected
 
 ## Schematic
-![WPS Schematic](../assets/images/wps.jpg)
+![WPS Schematic 1](../assets/images/wps.jpg)
 
 
 ## General
