@@ -26,6 +26,8 @@ as a custom application, , and optimised for Packet Radio end user applications,
 ## Schematic
 ![WPS Schematic 2](wps.jpg)
 
+Must add a /r
+WhatsPac strips whitespace
 
 ## General
 1. How WPS Works - An Overview
