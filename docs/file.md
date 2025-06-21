@@ -26,6 +26,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 <details>
 <summary>Show</summary>
 
+
 ```json
 {
    "t": "c",
@@ -71,6 +72,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 ### JSON Example
 <details>
 <summary>Show</summary>
+
 
 ```json
 {
