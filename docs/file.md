@@ -10,7 +10,7 @@ This is the first data exchange after connect - the client sends a Type ‘c’ 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 |-------------|-------------|-------------|-------------|-------------|
 
-| Friendly Name | Key | Sample Values | Second Header | Notes |
+| Friendly Name | Key | Sample Values | Data | Notes |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Type|`t`|`c`|String|Always type c|
 |Name|`n`|`Kevin`|String|Name as entered in WhatsPac Client|
