@@ -1,6 +1,3 @@
-> [!NOTE]
-> WPS is seeking developers to build the replication functionality and support WPS for the Amateur Radio community - if you're interested, please let us know!
-
 # WPS - A Messaging Service and Protocol for Packet Radio
 
 WPS is a backend service and protocol that provides messaging services over Packet Radio. Currently built to interface with a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
