@@ -24,10 +24,6 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 10. Connect Sequence
 11. Files
 
-## Protocol Definition
-1. [Type c - Connect](#type-c---connect)
-2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-&-message-send-response)
-
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
 
