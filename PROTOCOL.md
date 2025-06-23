@@ -1,6 +1,7 @@
 ## Table of Contents
 1. [Type c - Connect](#type-c---connect)
 2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-&-message-send-response)
+2. [Type mE - Message Edit](#type-me-message-edit)
 
 ## Type c - Connect
 This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
@@ -156,7 +157,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 ```json
 {
    "t": "sR", 
-   "_id": "b9de5114-d6b7-477b-8d22-042844ff2db9"
+   "_id": "9cb62327-a67d-4a5c-abbe-eb2fd8471fb3"
 }
 ```
 
@@ -168,17 +169,27 @@ Does not need to be sent over RF. Client and Server can use different database i
 Remove fc
 Does not need to be sent over RF. The server knows who sent the message from the session - the server can add the from call upon receipt
 
-## Type M - Message
-### Overview
+## Type mE - Message Edit
 ## Client to Server
 ### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
+|Type|`t`|`mE`|String|Always type ‘mE’
+|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|Guid of the edited message - common between Client and Server
+|Edited Message|`m`|`This is a test`|String|The edited message in full
+|Edited Flag|`ed`|`1`|Number|Currently used to determine if a message has been edited
+|Edited Timestamp|`edts`|`1740312733`|Number|Edited timestamp of message - seconds since epoch
 
 ### JSON Example
 
 ```json
+{
+    "t": "mE",
+    "_id": "d25e2702-2023-4906-93f0-5c60a4c18b4d", 
+    "m": "Blah 2", 
+    "edts": 1750713928
+}
 ```
 
 ## Server to Client
@@ -186,10 +197,16 @@ Does not need to be sent over RF. The server knows who sent the message from the
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
+|Type|`t`|`sR`|String|Always type ‘sR’ for Send Response
+|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|Guid - common between Client and Server
 
 ### JSON Example
 
 ```json
+{
+   "t": "sR", 
+   "_id": "d25e2702-2023-4906-93f0-5c60a4c18b4d"
+}
 ```
 
 ## Type M - Message
