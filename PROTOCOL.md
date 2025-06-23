@@ -1,6 +1,6 @@
 ## Table of Contents
 1. [Type c - Connect](#type-c---connect)
-2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-message-send-response)
+2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-\&-message-send-response)
 
 ## Type c - Connect
 This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
@@ -102,7 +102,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 }
 ```
 
-## Type m and sR - Message Send Message Send Response
+## Type m and sR - Message Send & Message Send Response
 
 > [!WARNING]
 > Type `m` is being updated to align with the improved object used by type `p`.
