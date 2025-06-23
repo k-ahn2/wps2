@@ -28,15 +28,15 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 |Name|`n`|`Kevin`|String|Name as entered in WhatsPac Client|
 |Callsign|`c`|`M0AHN`|String|Callsign as entered in WhatsPac Client, minus the SSID if added|
 |Last Message|`lm`|`1740299150`|Number|Timestamp of last message - seconds since epoch|
-|Last Emoji|`le`|`1740266497`|Number|Timestamp of last emoji - seconds since epoch|
-|Last Edit|`led`|`1739318078`|Number|Timestamp of last edit - seconds since epoch|
+|Last Emoji|`le`|`1740266497`|Number|Timestamp of last message emoji - seconds since epoch|
+|Last Edit|`led`|`1739318078`|Number|Timestamp of last message edit - seconds since epoch|
 |Version|`v`|`0.44`|Number|Version of client, used for logging only|
 |Channel Connect|`cc`|`[]`|Array of Objects|Contains one JSON object per channel subscribed|
 |**Channel Connect Objects**|
 |Channel Id|`cid`|`2`|Number|The Channel Id|
 |Last Post|`lp`|`1740251305826`|Number|Timestamp of last post - milliseconds since epoch|
-|Last Emoji|`le`|`1740252223588`|Number|Timestamp of last emoji - milliseconds since epoch|
-|Last Edit|`led`|`1738869165936`|Number|Timestamp of last edit - milliseconds since epoch|
+|Last Emoji|`le`|`1740252223588`|Number|Timestamp of last post emoji - milliseconds since epoch|
+|Last Edit|`led`|`1738869165936`|Number|Timestamp of last post edit - milliseconds since epoch|
 
 ### JSON Example
 
