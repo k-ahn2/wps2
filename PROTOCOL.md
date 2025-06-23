@@ -104,7 +104,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 
 ## Type m and sR - Message Send & Message Send Response
 
-> [!TODO]
+> [!WARN]
 > Type `m` is being updated to align with the improved object used by type `p`.
 > The `_id` field is being depracated, the `ts` will be used instead.
 > Type `sR` is being renamed to type `mR` for consistency with the post format
