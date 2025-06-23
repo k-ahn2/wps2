@@ -121,7 +121,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 |Message|`m`|`This is a test`|String|The actual message
 |Timestamp|`ts`|`1740312733`|Number|Timestamp of message - seconds since epoch
 |**Optional Fields**|
-|Reply Id|`r`|`4ef02c95-c448-4dd8-b35f-e7d70f9ea7a0`|Number|0 = Client Sent, 1 = Server Received
+|Reply Id|`r`|`4ef02c95-c448-4dd8-b35f-e7d70f9ea7a0`|String|The id of the message being replied to
 |**Server Only Fields**|
 |Message Status|`ms`|`1`|Number|0 = Client Sent<BR>1 = Server Received<BR>2 = Recipient Delivered<BR>3 = Recipient Read.<BR>Currently unused - future use case. server value always currently 1|
 |Logged Timestamp|`lts`|`1740312745`|Number|The timestamp the server received and processed the message
