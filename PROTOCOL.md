@@ -19,7 +19,6 @@ Upon receipt, the server:
 See **Connect Sequence** for a detailed explanation of the subsequent connect process
 
 ## Client to Server
-This is the first data exchange after connect - the client sends a Type ‘c’ object to the server, which uses this data to determine the client state and what to return.
 
 ### Object Fields
 
