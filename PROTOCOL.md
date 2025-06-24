@@ -1,8 +1,5 @@
 ## Table of Contents
 1. [Type c - Connect](#type-c---connect)
-2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-&-message-send-response)
-2. [Type mE - Message Edit](#type-me-message-edit)
-2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-\&-message-send-response)
 2. [Type m - Message Send](#type-m---message-send)
 3. [Type mE - Message Edit](#type-me-message-edit)
 4. [Type sR - Message Delivery Response](#type-sR---message-delivery-response)
