@@ -1,7 +1,7 @@
 ## Table of Contents
 1. [Type c - Connect](#type-c---connect)
 2. [Type m - Message Send](#type-m---message-send)
-3. [Type mE - Message Edit](#type-me-message-edit)
+3. [Type mE - Message Edit](#type-me---message-edit)
 4. [Type sR - Message Delivery Response](#type-sR---message-delivery-response)
 5. [Type eA and eR - Emoji Add and Emoji Remove](#type-ea-and-er---emoji-add-and-emoji-remove)
 6. [Type p and pR - Enable Pairing and Pairing Response](#type-p-and-pr---enable-pairing-and-pairing-response)
