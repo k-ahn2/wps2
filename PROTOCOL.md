@@ -2,6 +2,13 @@
 1. [Type c - Connect](#type-c---connect)
 2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-&-message-send-response)
 2. [Type mE - Message Edit](#type-me-message-edit)
+2. [Type m and sR - Message Send & Message Send Response](#type-m-and-sr---message-send-\&-message-send-response)
+2. [Type m - Message Send](#type-m---message-send)
+3. [Type mE - Message Edit](#type-me-message-edit)
+4. [Type sR - Message Delivery Response](#type-sR---message-delivery-response)
+5. [Type eA and eR - Emoji Add and Emoji Remove](#type-ea-and-er---emoji-add-and-emoji-remove)
+6. [Type p and pR - Enable Pairing and Pairing Response](#type-p-and-pr---enable-pairing-and-pairing-response)
+7. [Type uE - User Enquiry](#type-ue---user-enquiry)
 
 ## Type c - Connect
 This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
@@ -103,7 +110,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 }
 ```
 
-## Type m and sR - Message Send & Message Send Response
+## Type m - Message Send
 
 > [!WARNING]
 > Type `m` is being updated to align with the improved object used by type `p`.
@@ -144,31 +151,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 }
 ```
 
-## Server to Client
-### Object Fields
-
-| Friendly Name | Key | Sample Values | Data Type | Notes |
-| - | :-: | :-: | :-: | - |
-|Type|`t`|`sR`|String|Always type ‘sR’ for Send Response
-|Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid - common between Client and Server
-
-### JSON Example
-
-```json
-{
-   "t": "sR", 
-   "_id": "9cb62327-a67d-4a5c-abbe-eb2fd8471fb3"
-}
-```
-
-TODO
-Remove ms key
-Does not need to be sent over RF. Client sets as 0 until it gets the Send Reply. Server should set to 1 upon receipt
-Remove _id key
-Does not need to be sent over RF. Client and Server can use different database ids (same as built for Posts). Currently the delivery receipt is applied using the _id - can use the timestamp instead (again same as a Post)
-Remove fc
-Does not need to be sent over RF. The server knows who sent the message from the session - the server can add the from call upon receipt
-
 ## Type mE - Message Edit
 ## Client to Server
 ### Object Fields
@@ -198,7 +180,7 @@ Does not need to be sent over RF. The server knows who sent the message from the
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`sR`|String|Always type ‘sR’ for Send Response
-|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|Guid - common between Client and Server
+|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
 
 ### JSON Example
 
@@ -208,18 +190,81 @@ Does not need to be sent over RF. The server knows who sent the message from the
    "_id": "d25e2702-2023-4906-93f0-5c60a4c18b4d"
 }
 ```
+## Type mR - Message Delivery Response
 
-## Type M - Message
-### Overview
+## Server to Client
+### Object Fields
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`sR`|String|Always type ‘sR’ for Send Response
+|Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid - common between Client and Server
+
+### JSON Example
+
+```json
+{
+   "t": "sR", 
+   "_id": "9cb62327-a67d-4a5c-abbe-eb2fd8471fb3"
+}
+```
+
+**TODO**
+- Remove _id key - Does not need to be sent over RF. Client and Server can use different database ids (same as built for Posts). Currently the delivery receipt is applied using the _id - can use the timestamp instead (again same as a Post)
+- Remove fc - Does not need to be sent over RF. The server knows who sent the message  from the session - the server can add the from call upon receipt
+
+## Type eA and eR - Emoji Add and Emoji Remove
+
 ## Client to Server
 ### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
+|Type|`t`|`eA` or `eR`|String|`eA` for Emoji Add or `eR` for Emoji Remove
+|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
+|Emoji|`e`|`1f44d`|The unicode value of the emoji to add or remove
+
+### JSON Example
+
+Emoji Add
+```json
+{
+   "t": "eA",
+   "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
+   "e": "1f44d"
+}
+```
+
+Emoji Remove
+```json
+{
+   "t": "eR",
+   "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
+   "e": "1f44d"
+}
+```
+
+## Server to Client
+
+If the recipient of the Emoji is connected in real-time, WPS relays the same `eA` or `eR` object
+
+## Type p and pR - Enable Pairing and Pairing Response
+
+## Client to Server
+### Object Fields
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`p`|String|Always type `p` for Pairing
+|Callsign|`fc`|`M0AHN`|String|The callsign of the user entering pairing mode
 
 ### JSON Example
 
 ```json
+{
+   "t": "p",
+   "fc": "M0AHN"
+}
 ```
 
 ## Server to Client
@@ -227,8 +272,54 @@ Does not need to be sent over RF. The server knows who sent the message from the
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
+|Type|`t`|`pR`|String|Always type `pR` for Pairing Response
+|Enabled|`e`|`true`|Boolean|Tells the client pairing is enabled
+|Start Time|`st`|`1750799200`|Number|The server start time for pairing, seconds since epoch
 
 ### JSON Example
 
 ```json
+{
+   "t": "pR",
+    "e": true,
+    "st": 1750799200
+}
+```
+
+## Type uE - User Enquiry
+Used to determine if a user is registered with WPS
+## Client to Server
+### Object Fields
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`uE`|String|Always type ‘uE’ for User Enquiry
+|Callsign|`fc`|`M0AHN`|String|The callsign of the user you're enquiring about
+
+### JSON Example
+
+```json
+{
+   "t" : "uE",
+   "c": "G5ALF"
+}
+```
+
+## Server to Client
+### Object Fields
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`ueR`|String|Always type `ueR` for User Enquiry Response
+|Registered|`r`|`true` or `false`|Boolean|True if registered
+|Start Time|`tc`|`G5ALF`|String|Callsign of the user enquired about
+
+
+### JSON Example
+
+```json
+{
+   "t": "ueR",
+   "r": false,
+   "tc": "G5ALF"}
 ```
