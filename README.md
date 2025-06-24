@@ -17,12 +17,13 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 3. [Server Capabilities](#server-capabilities)
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. [WPS Installation and Prereqs](#wps-installation-and-prereqs)
-6. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps---a-javascript-example)
-7. Node Integration - Interfacing with BPQ or Xrouter
-8. Common Processing Considerations
-9. Configuring `env.json`
-10. Connect Sequence
-11. Files
+6. [How WPS handles JSON](#how-wps-handles-json)
+7. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps---a-javascript-example)
+8. Node Integration - Interfacing with BPQ or Xrouter
+9. Common Processing Considerations
+10. Configuring `env.json`
+11. Connect Sequence
+12. Files
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
