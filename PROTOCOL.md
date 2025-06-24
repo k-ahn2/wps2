@@ -187,7 +187,7 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
    "_id": "d25e2702-2023-4906-93f0-5c60a4c18b4d"
 }
 ```
-## Type mR - Message Delivery Response
+## Type sR - Message Delivery Response
 
 ## Server to Client
 ### Object Fields
