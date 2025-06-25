@@ -2,6 +2,8 @@
 1. [Type cp - Channel Post](#type-cp---channel-post)
 2. [Type cpE - Channel Post Edit](#type-cpE---channel-post-edit)
 3. [Type cpR - Channel Post Response](#type-cpR---channel-post-response)
+4. [Type cpeA and cpeR - Channel Post Emoji Add and Emoji Remove](#type-cpea-and-cper---channel-post-emoji-add-and-emoji-remove)
+5. [Type cpB - Channel Post Batch]((#type-cpb----channel-post-batch))
 
 ## Type cp - Channel Post
 ### Client to Server
@@ -21,6 +23,7 @@
 
 ### JSON Example
 
+A simple post
 ```json
 {
    "t": "cp",
@@ -31,6 +34,7 @@
 }
 ```
 
+A reply to a post
 ```json
 {
    "t": "cp",
@@ -68,6 +72,7 @@
 
 ## Server to Client
 
+
 ## Type cpR - Channel Post Response
 
 ## Server to Client
@@ -93,24 +98,26 @@
 - Remove _id key - Does not need to be sent over RF. Client and Server can use different database ids (same as built for Posts). Currently the delivery receipt is applied using the _id - can use the timestamp instead (again same as a Post)
 - Remove fc - Does not need to be sent over RF. The server knows who sent the message  from the session - the server can add the from call upon receipt
 
-## Type eA and eR - Emoji Add and Emoji Remove
+## Type cpeA and cpeR - Channel Post Emoji Add and Emoji Remove
 
 ## Client to Server
 ### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`eA` or `eR`|String|`eA` for Emoji Add or `eR` for Emoji Remove
-|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
-|Emoji|`e`|`1f44d`|The unicode value of the emoji to add or remove
+|Type|`t`|`cpeA` or `cpeR`|String|`cpeA` for Channel Post Emoji Add or `cpeR` for Channel Post Emoji Remove
+|Id|`ts`|`1750361450494`|Number|The ts of post to add or remove the emoji
+|Type|`cid`|`6`|Number|id of the channel|
+|Emoji|`e`|`1f44d`|String|The unicode value of the emoji to add or remove
 
 ### JSON Example
 
 Emoji Add
 ```json
 {
-   "t": "eA",
-   "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
+   "t": "cpeA",
+   "ts": 1750361450494,
+   "cid": 6,
    "e": "1f44d"
 }
 ```
@@ -118,32 +125,48 @@ Emoji Add
 Emoji Remove
 ```json
 {
-   "t": "eR",
-   "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
+   "t": "cpeR",
+   "ts": 1750361450494,
+   "cid": 6,
    "e": "1f44d"
 }
 ```
 
 ## Server to Client
 
-If the recipient of the Emoji is connected in real-time, WPS relays the same `eA` or `eR` object
+If the recipient of the Emoji is connected in real-time, WPS relays the same `cpeA` or `cpeR` object
 
-## Type p and pR - Enable Pairing and Pairing Response
+## Type cS - Channel Subscribe
 
 ## Client to Server
 ### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`p`|String|Always type `p` for Pairing
-|Callsign|`fc`|`M0AHN`|String|The callsign of the user entering pairing mode
+|Type|`t`|`cS` or `cS`|String|`cS` for Channel Subscribe
+|Subscribe|`s`|`1`|Number|`1` to subscribe, `0` to unsubscribe
+|Type|`cid`|`6`|Number|id of the channel|
+|Last Channel Post|`lcp`|`1750361450494`|Number|Usually 0 because the user hasn't previously subscribed, but will send the `ts` of the last post for this channel if one exists on the client 
 
 ### JSON Example
 
+Channel Subscribe
 ```json
 {
-   "t": "p",
-   "fc": "M0AHN"
+   "t": "cS",
+   "s": 1,
+   "cid": 1,
+   "lcp": 0
+}
+```
+
+Channel Unsubscribe
+```json
+{
+   "t": "cS",
+   "s": 0,
+   "cid": 1,
+   "lcp": 0
 }
 ```
 
@@ -152,36 +175,49 @@ If the recipient of the Emoji is connected in real-time, WPS relays the same `eA
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`pR`|String|Always type `pR` for Pairing Response
-|Enabled|`e`|`true`|Boolean|Tells the client pairing is enabled
-|Start Time|`st`|`1750799200`|Number|The server start time for pairing, seconds since epoch
+|Type|`t`|`cS` or `cS`|String|`cS` for Channel Subscribe
+|Type|`cid`|`6`|Number|id of the channel|
+|Subscribe|`s`|`1`|Number|`1` to confirm subscribed, `0` to confirm unsubscribed
+|Post Count|`pC`|`25`|Number|Only applicable for Subscribe, this is the number of new posts in the channel. Used by the client to prompt the user how many to download
 
 ### JSON Example
 
-```json
+``` json
 {
-   "t": "pR",
-    "e": true,
-    "st": 1750799200
+   "t": "cSR", 
+   "cid": 1, 
+   "s": 1, 
+   "pC": 0
 }
 ```
 
-## Type uE - User Enquiry
-Used to determine if a user is registered with WPS
+``` json
+{
+   "t": "cSR", 
+   "cid": 1, 
+   "s": 0, 
+}
+```
+
+## Type cpB - Channel Post Batch
+
 ## Client to Server
 ### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`uE`|String|Always type ‘uE’ for User Enquiry
-|Callsign|`fc`|`M0AHN`|String|The callsign of the user you're enquiring about
+|Type|`t`|`cpB`|String|`cpB` for Channel Post Batch
+|Type|`cid`|`6`|Number|id of the channel|
+|Post Count|`pc`|`17`|Number|The number of posts to return. Would return the last 17 posts in the channel, sent to the client in ascending (oldest first) order 
 
 ### JSON Example
 
+Channel Subscribe
 ```json
 {
-   "t" : "uE",
-   "c": "G5ALF"
+   "t": "cPB",
+   "cid": 6,
+   "pc":17
 }
 ```
 
@@ -190,16 +226,49 @@ Used to determine if a user is registered with WPS
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`ueR`|String|Always type `ueR` for User Enquiry Response
-|Registered|`r`|`true` or `false`|Boolean|True if registered
-|Start Time|`tc`|`G5ALF`|String|Callsign of the user enquired about
-
+|Type|`t`|`cPB`|String|`cPB` for Channel Post Batch
+|Type|`cid`|`6`|Number|id of the channel|
+|Meta|`m`|`1`|Object| pT = Post Total, in the overall batch <BR>pC = Post Count, the cumulative total after this batch is processed<br>```{ "pT": 17, "pC":4 }```
+|Posts|`p`|`[]`|Array|Array of `cp` objects to return to the client. Would include any applicable post fields if added - e.g. emojis, edit and reply
 
 ### JSON Example
 
-```json
+``` json
 {
-   "t": "ueR",
-   "r": false,
-   "tc": "G5ALF"}
+   "t": "cPB",
+   "cid": 6,
+   "m": {
+      "pT": 17,
+      "pC":4
+   },
+   "p": [
+      {
+         "t": "cp",
+         "cid": 6,
+         "fc": "G5ALF",
+         "ts": 1750359728258, 
+         "p": "TesT"
+      },
+      {
+         "t": "cp",
+         "cid": 6,
+         "fc": "M0AHN",
+         "ts": 1750359773884,
+         "p": "Test"
+      },
+      {
+         "t": "cp",
+         "cid": 6,
+         "fc": "M0AHN",
+         "ts": 1750359775310,
+         "p": "Test"
+      },
+      {
+         "t": "cp",
+         "cid": 6,
+         "fc": "M0AHN",
+         "ts": 1750359846362, "p": "Test"
+      }
+   ]
+}
 ```
