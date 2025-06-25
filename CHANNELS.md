@@ -16,7 +16,7 @@
 |Timestamp|`ts`|`1750804825979`|Number|Milliseconds since epoch|
 |Post|`p`|`Testing 123`|String|The posted message|
 |**Optional Fields**|
-|Reply Timestamp|`rta`|`1750804825979`|Number|The timestamp of the post being replied to
+|Reply Timestamp|`rts`|`1750804825979`|Number|The timestamp of the post being replied to
 |Reply From Call|`rfc`|`M0AHN`|String|The send of the post being replied to
 |**Server Only Fields**|
 |Delivery Timestamp|`dts`|`1750804826875`|Number|The timestamp the server received and processed the message. This is returned to the client in the `cpR` response for the client to calculate the delivery time to server
@@ -71,6 +71,7 @@ A reply to a post
 ```
 
 ## Server to Client
+
 
 
 ## Type cpR - Channel Post Response
@@ -227,7 +228,7 @@ Channel Subscribe
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cPB`|String|`cPB` for Channel Post Batch
-|Type|`cid`|`6`|Number|id of the channel|
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Meta|`m`|`1`|Object| pT = Post Total, in the overall batch <BR>pC = Post Count, the cumulative total after this batch is processed<br>```{ "pT": 17, "pC":4 }```
 |Posts|`p`|`[]`|Array|Array of `cp` objects to return to the client. Would include any applicable post fields if added - e.g. emojis, edit and reply
 
