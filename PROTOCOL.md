@@ -2,30 +2,23 @@
 1. [Type c - Connect](#type-c---connect)
 2. [Type m - Message Send](#type-m---message-send)
 3. [Type mE - Message Edit](#type-me---message-edit)
-4. [Type sR - Message Delivery Response](#type-sR---message-delivery-response)
+4. [Type sR - Message Delivery Response](#type-sr---message-delivery-response)
 5. [Type eA and eR - Emoji Add and Emoji Remove](#type-ea-and-er---emoji-add-and-emoji-remove)
 6. [Type p and pR - Enable Pairing and Pairing Response](#type-p-and-pr---enable-pairing-and-pairing-response)
 7. [Type uE - User Enquiry](#type-ue---user-enquiry)
+8. [The Connect Sequence Explained](#the-connect-sequence-explained)
 
 ## Type c - Connect
-This is the first data exchange after connect - the client sends a type ‘c’ object to the server, which uses this data to determine the client state and which messages and/or posts to return.
 
-Upon receipt, the server:
-1. Uses the timestamps to establish the new messages and/or posts to be sent to the client
-2. Returns a type `c` object to the client, containing the new message and post counts
-3. Then uses the timestamps to return:
-   - new messages
-   - new message emojis
-   - new message edits
-   - new posts
-   - new post emojis
-   - new post edits
+Simply, type `c` is a bi-directional exchange of headers between client and server.
 
-See **Connect Sequence** for a detailed explanation of the subsequent connect process
+This is the first data exchange after connect - the client sends a type `c` object to the server with information to explain the client state, which is mainly based around timestamps of messages and posts. 
+
+The server then returns a type `c` object with information including the new message and post counts. 
+
+But, a type `c` object also triggers the subsequenct sequence of packets required to update the client with all changes since last login. See [The Connect Sequence Explained](#the-connect-sequence-explained) for a detailed explanation
 
 ## Client to Server
-
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -73,8 +66,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 
 ## Server to Client
 
-### Object Fields
-
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`c`|String|Always type ‘c’
@@ -115,7 +106,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 > Type `sR` is being renamed to type `mR` for consistency with the post format
 
 ## Client to Server
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -150,7 +140,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 
 ## Type mE - Message Edit
 ## Client to Server
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -172,7 +161,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 ```
 
 ## Server to Client
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -190,7 +178,6 @@ See **Connect Sequence** for a detailed explanation of the subsequent connect pr
 ## Type sR - Message Delivery Response
 
 ## Server to Client
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -248,7 +235,6 @@ If the recipient of the Emoji is connected in real-time, WPS relays the same `eA
 ## Type p and pR - Enable Pairing and Pairing Response
 
 ## Client to Server
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -265,7 +251,6 @@ If the recipient of the Emoji is connected in real-time, WPS relays the same `eA
 ```
 
 ## Server to Client
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -286,7 +271,6 @@ If the recipient of the Emoji is connected in real-time, WPS relays the same `eA
 ## Type uE - User Enquiry
 Used to determine if a user is registered with WPS
 ## Client to Server
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -303,7 +287,6 @@ Used to determine if a user is registered with WPS
 ```
 
 ## Server to Client
-### Object Fields
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -320,3 +303,101 @@ Used to determine if a user is registered with WPS
    "r": false,
    "tc": "G5ALF"}
 ```
+
+## The Connect Sequence Explained
+
+### Overview
+The type `c` handling is the most complex in WPS - it triggers the chain of responses required to update the client with all changes that have occurred since last login. 
+
+This is the first data exchange after connect - the client sends a type `c` object to the server. The server uses this data to determine the client state and which messages and/or posts to return.
+
+### Existing Connect - Last Message Timestamp > 0
+
+This covers users that have already registered and have data on the client.
+
+Upon receipt, WPS returns:
+1. A type `c` object sent to the client, containing:
+   - the new message and post counts by channel, even if zero
+   - whether there is a version upgrade
+2. as required:
+   - new messages, sent individually as type `m`
+   - new message emojis, sent individually as type `mE`
+   - new message edits, sent individually as type `eA` or `eR`
+   - new posts, sent in batches of 4 as tyep `cPB`
+   - new post emojis, sent in batches of 4 as tyep `cPB`
+   - new post edits, sent in batches of 4 as tyep `cPB`
+   - name changes
+   - updated last seen times
+
+The connect processing ensures data is only returned once. For example, if a user connects with a timestamp of `1740299150`, it will:
+1. edits, emojis added and emojis removed BEFORE this `1740299150`
+2. all messages or posts AFTER `1740299150`, which already includes the latest edit and/or emojis
+
+### New User or New Browser - Last Message Timestamp = 0
+
+This covers both scenario where there is no data on the client, either because a) the user has just registered for the first time, or c) the user has connected in a new browser.
+
+For a new user, WPS returns
+1. A type `c` object sent to the client, containing:
+   - new message counts (because they could have messages waiting)
+   - a welcome flag set, of this is the first time the user has connected
+   - whether there is a version upgrade
+2. New messages, sent individually as type `m`
+
+For an existing user connecting with new browser, WPS returns
+1. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser
+2. The last 10 messages exchanged with each recipient, sent in batches of 10
+2. A type `c` object sent to the client, containing:
+   - new message counts (because they could have messages waiting)
+   - whether there is a version upgrade
+
+> [!NOTE]
+> There is currently no way to recover every message ever sent if a user connects from a new browser. WPS will implement a method for handling this in future
+
+### Overview
+The type `c` handling is the most complex in WPS - it triggers the chain of responses required to update the client with all changes that have occurred since last login. 
+
+This is the first data exchange after connect - the client sends a type `c` object to the server. The server uses this data to determine the client state and which messages and/or posts to return.
+
+### Existing Connect
+
+This covers users that have already registered and have data on the client.
+
+Upon receipt, WPS returns:
+1. A type `c` object sent to the client, containing:
+   - the new message and post counts by channel, even if zero
+   - whether there is a version upgrade
+2. as required:
+   - new messages, sent individually as type `m`
+   - new message emojis, sent individually as type `mE`
+   - new message edits, sent individually as type `eA` or `eR`
+   - new posts, sent in batches of 4 as tyep `cPB`
+   - new post emojis, sent in batches of 4 as tyep `cPB`
+   - new post edits, sent in batches of 4 as tyep `cPB`
+   - name changes
+   - updated last seen times
+
+The connect processing ensures data is only returned once. For example, if a user connects with a timestamp of `1740299150`, it will:
+1. edits, emojis added and emojis removed BEFORE this `1740299150`
+2. all messages or posts AFTER `1740299150`, which already includes the latest edit and/or emojis
+
+### New User or New Browser
+
+This covers both scenario where there is no data on the client, either because a) the user has just registered for the first time, or c) the user has connected in a new browser.
+
+For a new user, WPS returns
+1. A type `c` object sent to the client, containing:
+   - new message counts (because they could have messages waiting)
+   - a welcome flag set, of this is the first time the user has connected
+   - whether there is a version upgrade
+2. New messages, sent individually as type `m`
+
+For an existing user connecting with new browser, WPS returns
+1. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser
+2. The last 10 messages exchanged with each recipient, sent in batches of 10
+2. A type `c` object sent to the client, containing:
+   - new message counts (because they could have messages waiting)
+   - whether there is a version upgrade
+
+> [!NOTE]
+> There is currently no way to recover every message ever sent if a user connects from a new browser. WPS will implement a method for handling this in future
