@@ -126,6 +126,7 @@ Ater every emoji add or remove, both for real-time connections and during the co
 |Type|`t`|`mem`|String|Message Emoji Add or Remove
 |Action|`a`|`1`|Number|`1` for Add, `0` for Remove
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
+|Timestamp|`ets`|`1750713928`|Number|Timestamp the emoji is created on the client
 |Emoji|`e`|`1f44d`|String|The unicode value of the emoji to add or remove
 
 ### JSON Example
@@ -136,7 +137,8 @@ Emoji Add
    "t": "mem",
    "a": 1,
    "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
-   "e": "1f44d"
+   "e": "1f44d",
+   "ets": 1750713928
 }
 ```
 
@@ -146,7 +148,8 @@ Emoji Remove
    "t": "mem",
    "a": 0,
    "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241",
-   "e": "1f44d"
+   "e": "1f44d",
+   "ets": 1750713928
 }
 ```
 
@@ -156,6 +159,7 @@ Emoji Remove
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`mem`|String|Type Emoji
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
+|Timestamp|`ets`|`1750713928`|Number|Timestamp the emoji is applied at the server, replicated to the client
 |Array of Emojis|`e`|`[ "1f44d", "1f603" ]`|
 
 ### JSON Example
@@ -167,6 +171,7 @@ Emoji Remove
    "e": [
       "1f44d",
       "1f603"
-   ] 
+   ],
+   "ets": 1750713928
 }
 ```
