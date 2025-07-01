@@ -42,13 +42,13 @@ Batch Variants
 
 ```json
 {
-   "t":"m",
-   "_id":"9cb62327-a67d-4a5c-abbe-eb2fd8471fb3",
-   "fc":"G5ALF",
-   "tc":"M0AHN",
-   "m":"This is a test",
-   "ms":1,
-   "ts":1740312733
+   "t": "m",
+   "_id": "9cb62327-a67d-4a5c-abbe-eb2fd8471fb3",
+   "fc": "G5ALF",
+   "tc": "M0AHN",
+   "m": "This is a test",
+   "ms": 1,
+   "ts": 1740312733
 }
 ```
 
