@@ -158,7 +158,7 @@ Emoji Remove
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`e`|String|Type Emoji
+|Type|`t`|`mem`|String|Type Emoji
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
 |Array of Emojis|`e`|`[ "1f44d", "1f603" ]`|
 
@@ -166,7 +166,7 @@ Emoji Remove
 
 ```json
 { 
-   "t": "e", 
+   "t": "mem", 
    "_id": "241a9c25-662b-4de4-a2b6-0a5482b65241", 
    "e": [
       "1f44d",
