@@ -21,7 +21,7 @@ Batch Variants
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cp`|String|Always type `cp` for Channel Post|
-|Type|`cid`|`1`|Number|id of the channel|
+|Channel Id|`cid`|`1`|Number|id of the channel|
 |From Call|`fc`|`M0AHN`|String|Callsign of the sender|
 |Timestamp|`ts`|`1750804825979`|Number|Milliseconds since epoch|
 |Post|`p`|`Testing 123`|String|The posted message|
@@ -63,7 +63,7 @@ A reply to a post
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cped`|String|Always type ‘cpE’ for Channel Post Ecit
-|Type|`cid`|`6`|Number|id of the channel|
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Timestamp|`ts`|`1750804825979`|Number|Timestamp of original post|
 |Post|`p`|`Testing 123`|String|The updated post|
 |Edited Timestamp|`ts`|`1750804825979`|Number|Timestamp of original post|
@@ -115,8 +115,8 @@ A reply to a post
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cpem`|String|`cpeA` for Channel Post Emoji Add or `cpeR` for Channel Post Emoji Remove
-|Id|`ts`|`1750361450494`|Number|The ts of post to add or remove the emoji
-|Type|`cid`|`6`|Number|id of the channel|
+|Timestamp|`ts`|`1750361450494`|Number|The ts of post to add or remove the emoji
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Emoji|`e`|`1f44d`|String|The unicode value of the emoji to add or remove
 
 ### JSON Example
@@ -155,7 +155,7 @@ If the recipient of the Emoji is connected in real-time, WPS relays the same `cp
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cs`|String|`cs` for Channel Subscribe
 |Subscribe|`s`|`1`|Number|`1` to subscribe, `0` to unsubscribe
-|Type|`cid`|`6`|Number|id of the channel|
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Last Channel Post|`lcp`|`1750361450494`|Number|Usually 0 because the user hasn't previously subscribed, but will send the `ts` of the last post for this channel if one exists on the client 
 
 ### JSON Example
@@ -185,9 +185,9 @@ Channel Unsubscribe
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cs`|String|`cs` for Channel Subscribe
-|Type|`cid`|`6`|Number|id of the channel|
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Subscribe|`s`|`1`|Number|`1` to confirm subscribed, `0` to confirm unsubscribed
-|Post Count|`pC`|`25`|Number|Only applicable for Subscribe, this is the number of new posts in the channel. Used by the client to prompt the user how many to download
+|Post Count|`pc`|`25`|Number|Only applicable for Subscribe, this is the number of new posts in the channel. Used by the client to prompt the user how many to download
 
 ### JSON Example
 
@@ -215,7 +215,7 @@ Channel Unsubscribe
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cpb`|String|`cpB` for Channel Post Batch
-|Type|`cid`|`6`|Number|id of the channel|
+|Channel Id|`cid`|`6`|Number|id of the channel|
 |Post Count|`pc`|`17`|Number|The number of posts to return. Would return the last 17 posts in the channel, sent to the client in ascending (oldest first) order 
 
 ### JSON Example
