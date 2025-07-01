@@ -3,7 +3,7 @@
 Singular Types
 
 1. [Type cp - Channel Post](#type-cp---channel-post)
-2. [Type cped - Channel Post Edit](#type-cpe---channel-post-edit)
+2. [Type cped - Channel Post Edit](#type-cped---channel-post-edit)
 3. [Type cpr - Channel Post Response](#type-cpr---channel-post-response)
 4. [Type cpem - Channel Post Emoji](#type-cpem---channel-post-emoji)
 5. [Type cs - Channel Subscribe](#type-cs---channel-subscribe)
