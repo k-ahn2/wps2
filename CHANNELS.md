@@ -115,6 +115,7 @@ A reply to a post
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`cpem`|String|`cpeA` for Channel Post Emoji Add or `cpeR` for Channel Post Emoji Remove
+|Action|`a`|`1` or `0`|String|`1` for Emoji Add or `0` for Emoji Remove
 |Timestamp|`ts`|`1750361450494`|Number|The ts of post to add or remove the emoji
 |Channel Id|`cid`|`6`|Number|id of the channel|
 |Emoji|`e`|`1f44d`|String|The unicode value of the emoji to add or remove
