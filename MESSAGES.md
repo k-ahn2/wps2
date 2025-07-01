@@ -121,7 +121,7 @@ If the emoji reaches the server, it should always be delivered to the connected 
 
 There are some edge cases where a client could send a message and the packet network fails before delivery to the server. In this edge case, the sender may see the emoji on their client, but it hasn't been delivered.
 
-Ater every emoji add or addition, both for real-time connections and during the connect sequence, WPS will always return the latest full emoji state for a message with a type `e` onject
+Ater every emoji add or remove, both for real-time connections and during the connect sequence, WPS will always return the latest full emoji state for a message. For example, if a message has 1 emoji and 2nd is added, WPS will return both 1st and 2nd in the update.
 
 ### Client to Server
 
