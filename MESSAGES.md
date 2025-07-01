@@ -24,7 +24,7 @@ Batch Variants
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`m`|String|Always type ‘m’
-|Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid - common between Client and Server
+|Message Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid specfic to the message - common between Client and Server
 |From Call|`fc`|`G5ALF`|String|Sending Callsign
 |To Call|`tc`|`M0AHN`|String|Receiving Callsign
 |Message|`m`|`This is a test`|String|The actual message
@@ -32,7 +32,7 @@ Batch Variants
 |**Optional Fields**|
 |Reply Id|`r`|`4ef02c95-c448-4dd8-b35f-e7d70f9ea7a0`|String|The id of the message being replied to
 |**Server Only Fields**|
-|Message Status|`ms`|`1`|Number|0 = Client Sent<BR>1 = Server Received<BR>2 = Recipient Delivered<BR>3 = Recipient Read.<BR>Currently unused - future use case. server value always currently 1|
+|Message Status|`ms`|`1`|Number|0 = Client Sent<BR>1 = Server Received<BR>2 = Recipient Delivered<BR>3 = Recipient Read.<BR>Currently unused - future use case. Server value always currently 1|
 |Logged Timestamp|`lts`|`1740312745`|Number|The timestamp the server received and processed the message
 
 > [!NOTE]
