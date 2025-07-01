@@ -78,6 +78,9 @@ The sequence for a new message is:
    - if the recipient is not registered, end processing
 5. If not sent in real-time, when the recipient connects and sends a type `c` JSON object, WPS will then return the new message(s)
 
+> [!IMPORTANT]
+> WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination users. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
+
 ## WPS Installation and Prereqs
 
 > [!NOTE]
