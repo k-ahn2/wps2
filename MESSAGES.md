@@ -23,7 +23,7 @@ Batch Variants
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`m`|String|Always type ‘m’
+|Type|`t`|`m`|String|Type `m` for Message
 |Message Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid specfic to the message - common between Client and Server
 |From Call|`fc`|`G5ALF`|String|Sending Callsign
 |To Call|`tc`|`M0AHN`|String|Receiving Callsign
@@ -52,13 +52,17 @@ Batch Variants
 }
 ```
 
+### Server to Client
+
+Returns type `mr`
+
 ## med - Message Edit
 
 ### Client to Server
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`med`|String|Always type ‘mE’
+|Type|`t`|`med`|String|Type `med` for Message Edit
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|Guid of the edited message - common between Client and Server
 |Edited Message|`m`|`This is a test`|String|The edited message in full
 |Edited Flag|`ed`|`1`|Number|Currently used to determine if a message has been edited
@@ -77,19 +81,7 @@ Batch Variants
 
 ### Server to Client
 
-| Friendly Name | Key | Sample Values | Data Type | Notes |
-| - | :-: | :-: | :-: | - |
-|Type|`t`|`sR`|String|Always type ‘sR’ for Send Response
-|Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
-
-### JSON Example
-
-```json
-{
-   "t": "sR", 
-   "_id": "d25e2702-2023-4906-93f0-5c60a4c18b4d"
-}
-```
+Returns type `mr`
 
 ## mr - Message Delivery Response
 
@@ -97,7 +89,7 @@ Batch Variants
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`mr`|String|Always type ‘sR’ for Send Response
+|Type|`t`|`mr`|String|Always type `mr` for Message Response
 |Id|`_id`|`9cb62327-a67d-4a5c-abbe-eb2fd8471fb3`|String|Guid - common between Client and Server
 
 ### JSON Example
@@ -123,7 +115,7 @@ Ater every emoji add or remove, both for real-time connections and during the co
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`mem`|String|Message Emoji Add or Remove
+|Type|`t`|`mem`|String|Type `mem` for Message Emoji
 |Action|`a`|`1`|Number|`1` for Add, `0` for Remove
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
 |Timestamp|`ets`|`1750713928`|Number|Timestamp the emoji is created on the client
@@ -157,7 +149,7 @@ Emoji Remove
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`mem`|String|Type Emoji
+|Type|`t`|`mem`|String|Type `mem` for Message Emoji
 |Id|`_id`|`d25e2702-2023-4906-93f0-5c60a4c18b4d`|String|id of the message to apply the emoji
 |Timestamp|`ets`|`1750713928`|Number|Timestamp the emoji is applied at the server, replicated to the client
 |Array of Emojis|`e`|`[ "1f44d", "1f603" ]`|
@@ -182,7 +174,7 @@ Emoji Remove
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`mb`|String|Type Emoji
+|Type|`t`|`mb`|String|Type `mb` for Message Batch
 |Meta Data|`md`|`{}`|Object| `mt` = Message Total, in the overall batch <BR>`mc` = Message Count, the cumulative total after this batch is processed<br>```{ "mt": 27, "mc": 2 }```
 |Messages|`m`|`[]`|Array|Array of `m` objects to return to the client. Would include any applicable message fields if added - e.g. emojis, edit and reply
 
@@ -224,7 +216,7 @@ Emoji Remove
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`medb`|String|Type Message Edit Batch
+|Type|`t`|`medb`|String|Type `medb` for Message Batch
 |Messages|`med`|`[]`|Array|Array of `med` objects to return to the client
 
 ### JSON Example
@@ -253,7 +245,7 @@ Emoji Remove
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
-|Type|`t`|`memb`|String|Type Message Emoji Batch
+|Type|`t`|`memb`|String|Type `memb` for Message Batch
 |Messages|`mem`|`[]`|Array|Array of `mem` objects to return to the client
 
 ### JSON Example
