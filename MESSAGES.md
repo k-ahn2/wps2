@@ -2,18 +2,18 @@
 
 Singular Types
 
-1. [Type m - Message](#type-m---message)
-2. [Type med - Message Edit](#type-med---message-edit)
-3. [Type mr - Message Delivery Response](#type-mr---message-delivery-response)
-4. [Type mem - Message Emoji](#type-mem---message-emoji)
+1. [m - Message](#m---message)
+2. [med - Message Edit](#med---message-edit)
+3. [mr - Message Delivery Response](#mr---message-delivery-response)
+4. [mem - Message Emoji](#mem---message-emoji)
 
 Batch Variants
 
-1. [Type mb - Message Batch](#type-mb---message-batch)
-2. [Type medb - Message Edit Batch](#type-medb---message-edit-batch)
-3. [Type memb - Message Emoji Batch](#type-memb---message-emoji-batch)
+1. [mb - Message Batch](#mb---message-batch)
+2. [medb - Message Edit Batch](#medb---message-edit-batch)
+3. [memb - Message Emoji Batch](#memb---message-emoji-batch)
 
-## Type m - Message
+## m - Message
 
 > [!WARNING]
 > Type `m` is being updated to align with the improved object used by type `p`.
@@ -52,7 +52,7 @@ Batch Variants
 }
 ```
 
-## Type med - Message Edit
+## med - Message Edit
 
 ### Client to Server
 
@@ -91,7 +91,7 @@ Batch Variants
 }
 ```
 
-## Type mr - Message Delivery Response
+## mr - Message Delivery Response
 
 ### Server to Client
 
@@ -109,7 +109,7 @@ Batch Variants
 }
 ```
 
-## Type mem - Message Emoji
+## mem - Message Emoji
 
 WPS doesn"t send delivery confirmation responses for emoji additions or removals - they are not deemed essential to the integrity of WPS. 
 
@@ -176,7 +176,7 @@ Emoji Remove
 }
 ```
 
-## Type mb - Message Batch
+## mb - Message Batch
 
 ### Server to Client
 
@@ -218,7 +218,7 @@ Emoji Remove
 }
 ```
 
-## Type medb - Message Edit Batch
+## medb - Message Edit Batch
 
 ### Server to Client
 
@@ -247,7 +247,7 @@ Emoji Remove
 }
 ```
 
-## Type memb - Message Emoji Batch
+## memb - Message Emoji Batch
 
 ### Server to Client
 
