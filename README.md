@@ -84,7 +84,7 @@ The sequence for a new message is:
 ## WPS Installation and Prereqs
 
 > [!NOTE]
-> The author has only tested WPS on a Raspberry Pi running Raspbian. There is no known reason it shouldn't run in any Python environment. Please share your feedback so we can update the docs for others
+> WPS has only been tested on a Raspberry Pi running Raspbian. There is no known reason it shouldn't run in any Python environment. Please share your feedback so we can update the docs for others
 
 1. Clone the repository using git clone `https://github.com/k-ahn2/wps`
 2. Go to the `wps` directory

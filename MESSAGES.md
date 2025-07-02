@@ -2,18 +2,18 @@
 
 Singular Types
 
-1. [Type m - Message Send](#type-m---message-send)
+1. [Type m - Message](#type-m---message)
 2. [Type med - Message Edit](#type-med---message-edit)
 3. [Type mr - Message Delivery Response](#type-mr---message-delivery-response)
-4. [Type mem - Message Emoji Add or Remove](#type-mem---message-emoji-add-or-remove)
+4. [Type mem - Message Emoji](#type-mem---message-emoji)
 
 Batch Variants
 
-1. [Type mb - Message Send](#type-mb---message-send-batch)
-2. [Type medb - Message Edit](#type-medb---message-edit-batch)
+1. [Type mb - Message Batch](#type-mb---message-batch)
+2. [Type medb - Message Edit Batch](#type-medb---message-edit-batch)
 3. [Type memb - Message Emoji Batch](#type-memb---message-emoji-batch)
 
-## Type m - Message Send
+## Type m - Message
 
 > [!WARNING]
 > Type `m` is being updated to align with the improved object used by type `p`.
@@ -109,13 +109,13 @@ Batch Variants
 }
 ```
 
-## Type mem - Message Emoji Add or Remove
+## Type mem - Message Emoji
 
-WPS doesn't send delivery confirmation responses for emoji additions or removals - they are not deemed essential to the integrity of WPS. 
+WPS doesn"t send delivery confirmation responses for emoji additions or removals - they are not deemed essential to the integrity of WPS. 
 
 If the emoji reaches the server, it should always be delivered to the connected client in real-time, or, get picked up at next connect.
 
-There are some edge cases where a client could send a message and the packet network fails before delivery to the server. In this edge case, the sender may see the emoji on their client, but it hasn't been delivered.
+There are some edge cases where a client could send a message and the packet network fails before delivery to the server. In this edge case, the sender may see the emoji on their client, but it hasn"t been delivered.
 
 Ater every emoji add or remove, both for real-time connections and during the connect sequence, WPS will always return the latest full emoji state for a message. For example, if a message has 1 emoji and 2nd is added, WPS will return both 1st and 2nd in the update.
 
@@ -173,5 +173,100 @@ Emoji Remove
       "1f603"
    ],
    "ets": 1750713928
+}
+```
+
+## Type mb - Message Batch
+
+### Server to Client
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`mb`|String|Type Emoji
+|Meta Data|`md`|`{}`|Object| `mt` = Message Total, in the overall batch <BR>`mc` = Message Count, the cumulative total after this batch is processed<br>```{ "mt": 27, "mc": 2 }```
+|Messages|`m`|`[]`|Array|Array of `m` objects to return to the client. Would include any applicable message fields if added - e.g. emojis, edit and reply
+
+### JSON Example
+
+```json
+{
+   "t": "mb", 
+   "md": {
+      "mt": 27, 
+      "mc": 2
+   }, 
+   "m": [
+      {
+         "_id": "9cd7720d-958d-4ebc-b7c1-c53d81fc0182", 
+         "fc": "G5ALF", 
+         "tc": "M0AHN", 
+         "m": "Test 1", 
+         "ts": 1750380586, 
+         "e": ["1f622"], 
+         "ets": 1751390750
+      }, 
+      {
+         "_id": "ad90c85f-0eb0-4803-95ca-f292dbab238e", 
+         "fc": "G5ALF", 
+         "tc": "M0AHN", 
+         "m": "Test 2", 
+         "ts": 1750380602, 
+         "e": ["1f603"], 
+         "ets": 1751389832
+      }
+   ]
+}
+```
+
+## Type medb - Message Edit Batch
+
+### Server to Client
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`medb`|String|Type Message Edit Batch
+|Messages|`med`|`[]`|Array|Array of `med` objects to return to the client
+
+### JSON Example
+
+```json
+{
+   "t": "medb", 
+   "m": [
+      {
+         "_id": "9cd7720d-958d-4ebc-b7c1-c53d81fc0182",
+         "edts": 1751389832,
+         "m": "Edited Message Text"
+      },
+      {
+         "_id": "ad90c85f-0eb0-4803-95ca-f292dbab238e",
+         "edts": 1751389832,
+         "m": "Another Edited Message Text"
+      }      
+   ]
+}
+```
+
+## Type memb - Message Emoji Batch
+
+### Server to Client
+
+| Friendly Name | Key | Sample Values | Data Type | Notes |
+| - | :-: | :-: | :-: | - |
+|Type|`t`|`memb`|String|Type Message Emoji Batch
+|Messages|`mem`|`[]`|Array|Array of `mem` objects to return to the client
+
+### JSON Example
+
+```json
+{
+   "t": "memb", 
+   "m": [
+      {
+         "_id": "ad90c85f-0eb0-4803-95ca-f292dbab238e",
+         "e": ["1f603"],
+         "ets": 1751389832
+      }
+   ]
 }
 ```
