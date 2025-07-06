@@ -28,32 +28,30 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
 
-\* Supported via the Packet Alerts app, integrated with WhatsPac
-
 ## Key Functions
 - **Direct Messaging:** Message send and receive (similar to SMS, WhatsApp, Signal or iMessage)
 - **Channels:** Post to themed channels (similar to a Rocket Chat, Slack or Discord)
 - **Who is Online:** WPS updates clients when a user connects or disconnects
-- **Reply:** Users can sent new messages and posts, or reply to existing
+- **Reply:** Users can send new messages and posts, or reply to existing
 - **Emojis:** Include and react to messages and posts with Emojis
 - **Edits:** Edit messages and posts after sending
-- **User Registration:** New users are automatically registered upone connecting
+- **Auto Registration:** New users are automatically registered upone connecting
 - **Push Notifications:** Send push notfications when there is new activity (if paired with the Packet Alerts app, currently via WhatsPac only)
-- **Callsign Lookup:** Determine if a callsign is registered
-- **Name Change:** WPS distrbutes name updates when they change
+- **Callsign Lookup:** Enquire a callsign is registered
+- **Name Change:** WPS distrbutes display name updates, if changed
 - **Last Seen Times:** See when users you have messaged were last connected
-- **Delivery Receipts:** WPS responds to new and edited posts with a delivery receipt, guaranteeing server delivery
+- **Delivery Receipts:** WPS responds to new and edited messages and posts with a delivery receipt, guaranteeing server delivery
 - **Version Control:** Advise the client a new software version is available, configurable within WPS in real-time
 
 ## Other Capabilities
 - **Compression:** WPS compresses every packet before sending, then sends whichever of the compressed or uncompressed version is shorter
 - **Data Batching:** WPS batches bulk post downloads, optimising compression and delivery
-- **Logging:** WPS includes error logging by defauly, with extensive info logging configurable if required
-- **Run as Service:** WPS runs as a standard linux service (and assume can on Windows too)
+- **Logging:** WPS includes error logging by default, with extensive info logging configurable if required
+- **Run as Service:** WPS runs as a standard linux service (and assume could on Windows too)
 
 ## Future
 - **Replication:** Supporting the ability to replicate to other WPS instances hosted on the Packet Network
-- **Websocket / REST APIs:** For connecting directly over TCP, it's the intent that WPS will offer Websocket and REST APIs for access. Possible use cases are via Hamnet or local sysop access
+- **Websocket / REST APIs:** For connecting directly over TCP/IP, it's the intent that WPS will offer Websocket and REST APIs for access. Possible use cases are via Hamnet or local sysop access
 
 ## How WPS Works - An Overview
 
@@ -66,9 +64,9 @@ WPS is designed for system access only - it does not provide a human interface f
 > [!TIP]
 > BPQ and Xrouter support publising an application directly onto the AX:25 network with a callsign and alias. If configured, steps 1 and 2 can be merged. A connecting application can invoke WPS directly upon connecting
 
-WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connect application. It is also connection aware - if it recieves a message from M0AHN to G5ALF and G5ALF is connected, WPS will send the message to G5ALF in real-time
+WPS is a reactive service - activity is only triggered upon receipt of an instruction from a connected user. It is also connection aware - if it recieves a message from M0AHN addressed to G5ALF and G5ALF is connected, WPS will send the message to G5ALF in real-time
 
-The sequence for a new message is:
+As an example, the sequence for a new message is:
 1. WPS receives a type `m` JSON object from a connected application, meaning a new message
 2. WPS writes the message to the database
 3. WPS returns a delivery receipt to the sender. 
@@ -79,7 +77,7 @@ The sequence for a new message is:
 5. If not sent in real-time, when the recipient connects and sends a type `c` JSON object, WPS will then return the new message(s)
 
 > [!IMPORTANT]
-> WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination users. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
+> WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination user's database. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
 
 ## WPS Installation and Prereqs
 
@@ -107,16 +105,22 @@ WPS preprocesses received strings by:
    - if last in the array and is neither, return the string to the buffer
 - If either of the decompression or JSON conversion fails, this is considered a FATAL error and WPS disconnects the user
 
-In the even of conversion failure, WPS will log and `ERROR` in `wps.log`
+In the event of conversion failure, WPS will log and `ERROR` in `wps.log`
 
 The only exceptions to the above are the first and second strings recieved:
 - The first string recieved is always the callsign - e.g. `M0AHN\r`. This is sent by the node and happens before any subsequent processing
 - If the second string fails conversion, this is likely a manual connect by a human. WPS returns a friendly message (configurable in `wps.py`) and then disconnects
 
-Must add a /r
-WhatsPac strips whitespace
-Strips SSID
-Integrity Checks
+> [!NOTE]
+> WPS strips the SSID, if one is received from the node. The WPS user is always the callsign minus any SSID
+
+> [!INFORMATION]
+> I has been commented that JSON is an inefficient means of sending data over packet. Whilst the underlying principle of this view is understood, the author notes:
+> <br> 1. The use of compression offers a greater reduction in packet length than any protocol optimisation every could
+> <br> 2. JSON compresses well due to its repetitive use of certain characters
+> <br> 3. JSON offers a very simple way of assuring data integrity across a number of fragmented packets, a feature of the varying PACLENs used across the network
+> <br> 4. JSON is simple to construct and deconstruct by the connected applications
+> <br> 5. WPS could easily add support for a different paylod construct without material effot. It already recognises and supports two payload types - compressed and native JSON
 
 ## Sending a JSON object to WPS - A Javascript Example
 
