@@ -111,10 +111,10 @@ The only exceptions to the above are the first and second strings recieved:
 - The first string recieved is always the callsign - e.g. `M0AHN\r`. This is sent by the node and happens before any subsequent processing
 - If the second string fails conversion, this is likely a manual connect by a human. WPS returns a friendly message (configurable in `wps.py`) and then disconnects
 
-> [!NOTE]
+> [!IMPORTANT]
 > WPS strips the SSID, if one is received from the node. The WPS user is always the callsign minus any SSID
 
-> [!INFORMATION]
+> [!NOTE]
 > I has been commented that JSON is an inefficient means of sending data over packet. Whilst the underlying principle of this view is understood, the author notes:
 > <br> 1. The use of compression offers a greater reduction in packet length than any protocol optimisation every could
 > <br> 2. JSON compresses well due to its repetitive use of certain characters
