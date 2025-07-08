@@ -21,6 +21,7 @@ The server then returns a type `c` object with information including the new mes
 But, a type `c` object also triggers the subsequenct sequence of packets required to update the client with all changes since last login. See [The Connect Sequence Explained](#the-connect-sequence-explained) for a detailed explanation
 
 ### Client to Server
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -67,6 +68,7 @@ But, a type `c` object also triggers the subsequenct sequence of packets require
 ```
 
 ### Server to Client
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -103,6 +105,7 @@ But, a type `c` object also triggers the subsequenct sequence of packets require
 ## Type p - Enable Pairing
 
 ### Client to Server
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -119,6 +122,7 @@ But, a type `c` object also triggers the subsequenct sequence of packets require
 ```
 
 ### Server to Client
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -141,6 +145,7 @@ But, a type `c` object also triggers the subsequenct sequence of packets require
 Used to determine if a user is registered with WPS
 
 ### Client to Server
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -157,6 +162,7 @@ Used to determine if a user is registered with WPS
 ```
 
 ### Server to Client
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -179,6 +185,7 @@ Used to determine if a user is registered with WPS
 Used by Channels to fetch a user's name. 
 
 ### Client to Server
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -197,6 +204,7 @@ Used by Channels to fetch a user's name.
 ```
 
 ### Server to Client
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -226,7 +234,8 @@ Used by Channels to fetch a user's name.
 
 Sent by the server to all connected users when there is a new connect or disconnect
 
-### Client to Server
+### Server to Client
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -243,10 +252,11 @@ Sent by the server to all connected users when there is a new connect or disconn
 ```
 
 ## Type o - Online Users
+<hr>
 
 Sent by the server as part of the connect sequence - contains an array of users currently online
 
-### Client to Server
+### Server to Client
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -273,11 +283,12 @@ Sent by the server as part of the connect sequence - contains an array of users 
 Sent by the server as part of the connect sequence - contains updated name and last seen times for all users the connecting callsign has messaged, providing it has changed since last login
 
 ### Client to Server
+<hr>
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
 |Type|`t`|`u`|String|User Connect or User Disconnect
-|User Array|`u`|`"G5ALF","M0AHN"`|Array|Array of users currently online (i.e. connected)
+|User Array|`u`|`[]`|Array|Array of user objects
 |**User Array Objects**|
 |Callsign|`tc`|`G5ALF`|String|The recipient callsign|
 |Name|`n`|`Alfred`|Number|Reciient name|
@@ -306,7 +317,7 @@ The type `c` handling is the most complex in WPS - it triggers the chain of resp
 This is the first data exchange after connect - the client sends a type `c` object to the server. The server uses this data to determine the client state and which messages, posts and/or other updates to return.
 
 ### Existing Connect - Last Message Timestamp > 0
-
+<hr>
 This covers users that have already registered and have data on the client.
 
 Upon receipt, WPS returns:
@@ -329,7 +340,7 @@ The connect processing ensures data is only returned once. For example, if a use
 2. all messages or posts AFTER `1740299150`, which already includes the latest edit and/or emojis
 
 ### New User or New Browser - Last Message Timestamp = 0
-
+<hr>
 This covers both scenario where there is no data on the client, either because a) the user has just registered for the first time, or c) the user has connected in a new browser.
 
 For a new user, WPS returns
