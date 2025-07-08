@@ -11,12 +11,14 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 > [!IMPORTANT]
 > WPS is in active development and is changing on a regular basis - please remember to watch the repo to be alerted when there are new versions
 
-## Overview and Setup
+## Table of Contents
 1. [WPS Schematic](#wps-schematic)
 2. [Key functions](#key-functions)
 3. [Server Capabilities](#server-capabilities)
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. [How WPS handles JSON](#how-wps-handles-json)
+
+6. [Installation](#docs/installation/installation.md)
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
