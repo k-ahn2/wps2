@@ -1,6 +1,6 @@
 # Installation
 
-## Table of Contents
+## Table of Contents 
 
 1. [WPS Installation and Prereqs](#wps-installation-and-prereqs)
 2. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps---a-javascript-example)
