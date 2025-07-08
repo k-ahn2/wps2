@@ -320,6 +320,7 @@ This is the first data exchange after connect - the client sends a type `c` obje
 <hr>
 This covers users that have already registered and have data on the client.
 
+
 Upon receipt, WPS returns:
 1. A type `c` object sent to the client, containing:
    - the new message and post counts by channel, even if zero
@@ -335,13 +336,16 @@ Upon receipt, WPS returns:
    - updated name changes as type `he`, for Channel users
    - online users as type `o`
 
-The connect processing ensures data is only returned once. For example, if a user connects with a timestamp of `1740299150`, it will:
-1. edits, emojis added and emojis removed BEFORE this `1740299150`
-2. all messages or posts AFTER `1740299150`, which already includes the latest edit and/or emojis
+The connect processing ensures data is only returned once. For example, if a user connects with a last message timestamp of `1740299150`, it will return:
+1. any edits, emojis added and emojis removed for messages already on the client (on or before `1740299150`)
+2. all new messages after `1740299150`, which already includes the latest edit and/or emojis
+
+Post handling follows the same logic, by channel subscribed
 
 ### New User or New Browser - Last Message Timestamp = 0
 <hr>
 This covers both scenario where there is no data on the client, either because a) the user has just registered for the first time, or c) the user has connected in a new browser.
+
 
 For a new user, WPS returns
 1. A type `c` object sent to the client, containing:
@@ -351,11 +355,11 @@ For a new user, WPS returns
 2. New messages, sent individually as type `m`
 
 For an existing user connecting with new browser, WPS returns
-1. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser
-2. The last 10 messages exchanged with each recipient, sent in batches of 10
-2. A type `c` object sent to the client, containing:
+1. A type `c` object sent to the client, containing:
    - new message counts (because they could have messages waiting)
    - whether there is a version upgrade
+2. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser, sent as type `u`
+3. The last 10 messages exchanged with each recipient, sent in batches of 10 as type `mb`
 
 > [!NOTE]
 > There is currently no way to recover every message ever sent if a user connects from a new browser. WPS will implement a method for handling this in future
