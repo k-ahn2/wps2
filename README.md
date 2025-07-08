@@ -18,7 +18,7 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. [How WPS handles JSON](#how-wps-handles-json)
 
-6. [Installation](docs/installation/installation.md)
+6. [Installation](docs/installation/INSTALLATION.md)
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
