@@ -1,3 +1,5 @@
+# Protocol - Channels
+
 ## Table of Contents
 
 Singular Types

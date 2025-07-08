@@ -1,3 +1,5 @@
+# Protocol - Messages
+
 ## Table of Contents
 
 Singular Types

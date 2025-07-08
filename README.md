@@ -16,14 +16,7 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 2. [Key functions](#key-functions)
 3. [Server Capabilities](#server-capabilities)
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
-5. [WPS Installation and Prereqs](#wps-installation-and-prereqs)
-6. [How WPS handles JSON](#how-wps-handles-json)
-7. [Sending a JSON object to WPS (Javascript Example)](#sending-a-json-object-to-wps---a-javascript-example)
-8. Node Integration - Interfacing with BPQ or Xrouter
-9. Common Processing Considerations
-10. Configuring `env.json`
-11. Connect Sequence
-12. Files
+5. [How WPS handles JSON](#how-wps-handles-json)
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
@@ -79,19 +72,6 @@ As an example, the sequence for a new message is:
 > [!IMPORTANT]
 > WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination user's database. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
 
-## WPS Installation and Prereqs
-
-> [!NOTE]
-> WPS has only been tested on a Raspberry Pi running Raspbian. There is no known reason it shouldn't run in any Python environment. Please share your feedback so we can update the docs for others
-
-1. Clone the repository using git clone `https://github.com/k-ahn2/wps`
-2. Go to the `wps` directory
-3. Run `python3 wps.py`
-
-This should start WPS with a default configuration. When running for the first time, WPS will create and initialise the database `wps.db`, plus `wps.log` and `db.log`
-
-Check for errors in the console. Confirmation of the TCP Port is shown - check this matches the port in BPQ or Xrouter.
-
 ## How WPS handles JSON
 
 WPS receives everything from the packet network and node as a string, with discreet packets delimited by `0x0D` (13 decimal), Additional delimiters are used for compressed packets. 
@@ -115,58 +95,10 @@ The only exceptions to the above are the first and second strings recieved:
 > WPS strips the SSID, if one is received from the node. The WPS user is always the callsign minus any SSID
 
 > [!NOTE]
-> I has been commented that JSON is an inefficient means of sending data over packet. Whilst the underlying principle of this view is understood, the author notes:
-> <br> 1. The use of compression offers a greater reduction in packet length than any protocol optimisation every could
-> <br> 2. JSON compresses well due to its repetitive use of certain characters
-> <br> 3. JSON offers a very simple way of assuring data integrity across a number of fragmented packets, a feature of the varying PACLENs used across the network
-> <br> 4. JSON is simple to construct and deconstruct by the connected applications
-> <br> 5. WPS could easily add support for a different paylod construct without material effot. It already recognises and supports two payload types - compressed and native JSON
+> The use of JSON offered many advantages when developing WPS:
+> <br> 1. Conversion to JSON offers a very simple way of assuring data integrity across a number of fragmented packets, a feature of the varying PACLENs used across the network
+> <br> 2. JSON is simple to use by both WPS and connected applications
+> <br> 3. JSON offers complete flexibility to add / amend data when required
+> <br> 4. JSON compresses well due to its repetitive use of certain characters. Overall ompression typically achieves up to a 40% reduction in packet length
+> <br><br>WPS could easily add support for a different paylod construct without material effort. It already recognises and supports two payload types - compressed and native JSON
 
-## Sending a JSON object to WPS - A Javascript Example
-
-With an open channel to WPS, connected applications should:
-1. Convert the JSON object to a string via `JSON.stringify` (Javascript), `json.dumps` (Python) or equivalent
-2. Add a `chr(13)` or `\r` or `0x0D` or equivalent, then send.
-
-Javascript Example:
-
-```javascript
-const sendConnectString = {
-   t: "c",
-   n: "Kevin",
-   c: "M0AHN",
-   lm: 123,
-   le: 456,
-   led: 789,
-   lhts: 123,
-   v: 0.44
-}
-send(`${JSON.stringify(sendConnectString)}\r`)
-```
-
-## Node Integration - Interfacing with BPQ or Xrouter
-
-> [!NOTE]
-> Xrouter node setup to be added
-
-> [!WARNING]
-> This section requires basic familiarity with BPQ configuration files and ideally custom application setup. Examples shown but please consult the BPQ documentation for more information
-
-### Simple Application Config
-`APPLICATION 1,WPS,C 8 HOST 0 TRANS`
-
-### Config with NETROM Alias
-`APPLICATION 1,WPS,C 8 HOST 0 TRANS,MB7NPW-9,WTSPAC,200,WTSPAC`
-
-### Config Entries (abridged)
-```
-PORT
-   PORTNUM=8
-   DRIVER=TELNET
-   CONFIG
-   DisconnectOnClose=1       ; Ensures the client is fully disconnected if the TCP Port disconnects
-   CMDPORT 63001 63002       ; Port and position must match. HOST 0 is 63001, HOST 1 is 63002
-   MAXSESSIONS=25            ; Maxmimum simultaneous connections
-   ....
-END PORT
-```
