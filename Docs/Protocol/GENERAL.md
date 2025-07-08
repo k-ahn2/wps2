@@ -1,3 +1,5 @@
+# Protocol - General
+
 ## Table of Contents
 1. [Type c - Connect](#type-c---connect)
 2. [Type p - Enable Pairing](#type-p---enable-pairing)
