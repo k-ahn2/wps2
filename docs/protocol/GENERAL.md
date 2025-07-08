@@ -303,7 +303,7 @@ Sent by the server as part of the connect sequence - contains updated name and l
 ### Overview
 The type `c` handling is the most complex in WPS - it triggers the chain of responses required to update the client with all changes that have occurred since last login. 
 
-This is the first data exchange after connect - the client sends a type `c` object to the server. The server uses this data to determine the client state and which messages and/or posts to return.
+This is the first data exchange after connect - the client sends a type `c` object to the server. The server uses this data to determine the client state and which messages, posts and/or other updates to return.
 
 ### Existing Connect - Last Message Timestamp > 0
 
