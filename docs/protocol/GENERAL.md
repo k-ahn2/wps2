@@ -21,7 +21,7 @@ The server then returns a type `c` object with information including the new mes
 But, a type `c` object also triggers the subsequenct sequence of packets required to update the client with all changes since last login. See [The Connect Sequence Explained](#the-connect-sequence-explained) for a detailed explanation
 
 ### Client to Server
-<hr>
+--
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
