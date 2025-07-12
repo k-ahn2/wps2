@@ -320,6 +320,7 @@ This is the first data exchange after connect - the client sends a type `c` obje
 <hr>
 This covers users that have already registered and have data on the client.
 
+
 Upon receipt, WPS returns:
 1. A type `c` object sent to the client, containing:
    - the new message and post counts by channel, even if zero
@@ -342,6 +343,7 @@ The connect processing ensures data is only returned once. For example, if a use
 ### New User or New Browser - Last Message Timestamp = 0
 <hr>
 This covers both scenario where there is no data on the client, either because a) the user has just registered for the first time, or c) the user has connected in a new browser.
+
 
 For a new user, WPS returns
 1. A type `c` object sent to the client, containing:
