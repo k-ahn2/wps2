@@ -4,7 +4,7 @@
 1. [Type c - Connect](#type-c---connect)
 2. [Type p - Enable Pairing](#type-p---enable-pairing)
 3. [Type ue - User Enquiry](#type-ue---user-enquiry)
-4. [Type he - Ham Enquiry and Hame Updates](#type-he---ham-enquiry-and-updates)
+4. [Type he - Ham Enquiry](#type-he---ham-enquiry)
 5. [Type uc and ud - User Connect and User Disconnect](#type-uc-and-ud---user-connect-and-user-disconnect)
 6. [Type o - Online Users](#type-o---online-users)
 7. [Type u - User Updates](#type-u---user-updates)
@@ -21,7 +21,7 @@ The server then returns a type `c` object with information including the new mes
 But, a type `c` object also triggers the subsequenct sequence of packets required to update the client with all changes since last login. See [The Connect Sequence Explained](#the-connect-sequence-explained) for a detailed explanation
 
 ### Client to Server
-<hr>
+___
 
 | Friendly Name | Key | Sample Values | Data Type | Notes |
 | - | :-: | :-: | :-: | - |
@@ -180,7 +180,7 @@ Used to determine if a user is registered with WPS
    "tc": "G5ALF"}
 ```
 
-## Type he - Ham Enquiry and Updates
+## Type he - Ham Enquiry
 
 Used by Channels to fetch a user's name. 
 
@@ -336,9 +336,11 @@ Upon receipt, WPS returns:
    - updated name changes as type `he`, for Channel users
    - online users as type `o`
 
-The connect processing ensures data is only returned once. For example, if a user connects with a timestamp of `1740299150`, it will:
-1. edits, emojis added and emojis removed BEFORE this `1740299150`
-2. all messages or posts AFTER `1740299150`, which already includes the latest edit and/or emojis
+The connect processing ensures data is only returned once. For example, if a user connects with a last message timestamp of `1740299150`, it will return:
+1. any edits, emojis added and emojis removed for messages already on the client (on or before `1740299150`)
+2. all new messages after `1740299150`, which already includes the latest edit and/or emojis
+
+Post handling follows the same logic, by channel subscribed
 
 ### New User or New Browser - Last Message Timestamp = 0
 <hr>
@@ -353,11 +355,11 @@ For a new user, WPS returns
 2. New messages, sent individually as type `m`
 
 For an existing user connecting with new browser, WPS returns
-1. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser
-2. The last 10 messages exchanged with each recipient, sent in batches of 10
-2. A type `c` object sent to the client, containing:
+1. A type `c` object sent to the client, containing:
    - new message counts (because they could have messages waiting)
    - whether there is a version upgrade
+2. All recipients the user has ever communicated with, sent to repopulate the recipient list in the browser, sent as type `u`
+3. The last 10 messages exchanged with each recipient, sent in batches of 10 as type `mb`
 
 > [!NOTE]
 > There is currently no way to recover every message ever sent if a user connects from a new browser. WPS will implement a method for handling this in future

@@ -1,6 +1,6 @@
 # WPS - A Messaging Service and Protocol for Packet Radio
 
-WPS is a backend service and protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
+WPS is a backend service and Level 7 application protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
 
 WPS was built specifically to enable the functionality in the WhatsPac front end, but implements a protocol that could be used by any Packet Radio messaging application.
 
@@ -87,9 +87,9 @@ WPS preprocesses received strings by:
    - if last in the array and is neither, return the string to the buffer
 - If either of the decompression or JSON conversion fails, this is considered a FATAL error and WPS disconnects the user
 
-In the event of conversion failure, WPS will log and `ERROR` in `wps.log`
+In the event of conversion failure, WPS will log an `ERROR` in `wps.log`
 
-The only exceptions to the above are the first and second strings recieved:
+The only exceptions to the above are the first and second strings received:
 - The first string recieved is always the callsign - e.g. `M0AHN\r`. This is sent by the node and happens before any subsequent processing
 - If the second string fails conversion, this is likely a manual connect by a human. WPS returns a friendly message (configurable in `wps.py`) and then disconnects
 
@@ -102,5 +102,5 @@ The only exceptions to the above are the first and second strings recieved:
 > <br> 2. JSON is simple to use by both WPS and connected applications
 > <br> 3. JSON offers complete flexibility to add / amend data when required
 > <br> 4. JSON compresses well due to its repetitive use of certain characters. Overall ompression typically achieves up to a 40% reduction in packet length
-> <br><br>WPS could easily add support for a different paylod construct without material effort. It already recognises and supports two payload types - compressed and native JSON
+> <br><br>WPS could easily add support for a different payload construct without material effort. It already recognises and supports two payload types - compressed and native JSON
 
