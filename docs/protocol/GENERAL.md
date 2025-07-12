@@ -4,7 +4,7 @@
 1. [Type c - Connect](#type-c---connect)
 2. [Type p - Enable Pairing](#type-p---enable-pairing)
 3. [Type ue - User Enquiry](#type-ue---user-enquiry)
-4. [Type he - Ham Enquiry and Hame Updates](#type-he---ham-enquiry-and-updates)
+4. [Type he - Ham Enquiry](#type-he---ham-enquiry)
 5. [Type uc and ud - User Connect and User Disconnect](#type-uc-and-ud---user-connect-and-user-disconnect)
 6. [Type o - Online Users](#type-o---online-users)
 7. [Type u - User Updates](#type-u---user-updates)
@@ -180,7 +180,7 @@ Used to determine if a user is registered with WPS
    "tc": "G5ALF"}
 ```
 
-## Type he - Ham Enquiry and Updates
+## Type he - Ham Enquiry
 
 Used by Channels to fetch a user's name. 
 
