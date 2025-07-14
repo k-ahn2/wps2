@@ -102,10 +102,10 @@ The only exceptions to the above are the first and second strings received:
 - The first string recieved is always the callsign - e.g. `M0AHN\r`. This is sent by the node and happens before any subsequent processing
 - If the second string fails conversion, this is likely a manual connect by a human. WPS returns a friendly message (configurable in `wps.py`) and then disconnects
 
-> [!NOTE]
+> [!IMPORTANT]
 > WPS strips the SSID, if one is received from the node. The WPS user is always the callsign minus any SSID
 
-> [!INFORMATION]
+> [!NOTE]
 > The use of JSON offered many advantages when developing WPS:
 > <br> 1. Conversion to JSON offers a very simple way of assuring data integrity across a number of fragmented packets, a feature of the varying PACLENs used across the network
 > <br> 2. JSON is simple to use by both WPS and connected applications
