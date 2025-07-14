@@ -8,6 +8,8 @@
 4. [Configuring `env.json`](#configuring-envjson)
 5. [WPS System and Log Files](#wps-system-and-log-files)
 
+[Return to README](/README.md)
+
 ## WPS Installation and Prereqs
 
 > [!NOTE]
@@ -48,6 +50,18 @@ END PORT
 
 ### BPQ Config with Callsign and NETROM
 `APPLICATION 1,WPS,C 8 HOST 0 TRANS,MB7NPW-9,WTSPAC,200,WTSPAC`
+
+```
+APPLICATION 6,SYSINFO,C 9 HOST 2 NOCALL K S
+                |       |    |   | |      | |
+                |       |    |   | |      | Return to node upon exit (omit if giving app its own NODECALL-#)
+                |       |    |   | |      Keep-alive to prevent premature exit of application
+                |       |    |   | Do not pass call sign to app (omit if you want it via stdin)
+                |       |    |   CMDPORT #
+                |       |    Localhost
+                |       Connect to Telnet PORT #
+                App name entered at user prompt
+```
 
 ## Sending a JSON object to WPS - A Javascript Example
 

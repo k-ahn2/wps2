@@ -11,9 +11,12 @@ Singular Types
 
 Batch Variants
 
-1. [Type mb - Message Batch](#type-mb---message-batch)
+1. [Type mb - Mes
+sage Batch](#type-mb---message-batch)
 2. [Type medb - Message Edit Batch](#type-medb---message-edit-batch)
 3. [Type memb - Message Emoji Batch](#type-memb---message-emoji-batch)
+
+[Return to README](/README.md)
 
 ## Type m - Message
 

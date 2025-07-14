@@ -16,9 +16,9 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 2. [Key functions](#key-functions)
 3. [Server Capabilities](#server-capabilities)
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
-5. [How WPS handles JSON](#how-wps-handles-json)
-
-6. [Installation](docs/installation/INSTALLATION.md)
+5. [Timestamps and Delivery Sequence](#timestamps-and-delivery-sequence)
+6. [How WPS handles JSON](#how-wps-handles-json)
+7. [WPS Installation and Protocol Documentation](#wps-installation-and-protocol-documentation)
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
@@ -74,6 +74,18 @@ As an example, the sequence for a new message is:
 > [!IMPORTANT]
 > WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination user's database. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
 
+## Timestamps and Delivery Sequence
+
+Timestamps are used extensively in the design of WPS:
+- Due to the potential variability in the RF packet network - where delivery times to the server can very depending on the number of hops, traffic and/or network drop outs - the timestamp assigned to a message or post when sent by the client is the authority used on both the server and all recipients. This ensures the sequencing of posts and messages remains as intended by the sender
+- For Posts, the timestamp is also used to:
+  - tell the sender how long a message took to reach the WPS by returning the server delivery timestamp `dts` to the client
+  - tell connected recipients of a post the end-to-end delivery time, calculated by comparing the `ts` of the post to the timestamp it was received
+- When downloading new posts, either on connect, subscribe or in real time, WPS always sends Posts and Messages in timestamp ASCENDING order - i.e. oldest first. This ensures if a user gets disconnected, the client can resume from the last message
+
+> [!WARNING]
+> WPS works on the assumption that modern OSs have time syncronisation and therefore accurate clocks. Beware if offline or time syncronisation is not live that sending a posts with an incorrect system clock could cause strange behaviours
+
 ## How WPS handles JSON
 
 WPS receives everything from the packet network and node as a string, with discreet packets delimited by `0x0D` (13 decimal), Additional delimiters are used for compressed packets. 
@@ -104,3 +116,11 @@ The only exceptions to the above are the first and second strings received:
 > <br> 4. JSON compresses well due to its repetitive use of certain characters. Overall ompression typically achieves up to a 40% reduction in packet length
 > <br><br>WPS could easily add support for a different payload construct without material effort. It already recognises and supports two payload types - compressed and native JSON
 
+## WPS Installation and Protocol Documentation
+
+Links to the documentation in the `/docs` directory
+
+1. [Installation](docs/installation/INSTALLATION.md)
+2. [Protocol - General](docs/protocol/GENERAL.md)
+3. [Protocol - Channels](docs/protocol/CHANNELS.md)
+4. [Protocol - Messages](docs/protocol/MESSAGES.md)

@@ -10,6 +10,8 @@
 7. [Type u - User Updates](#type-u---user-updates)
 8. [The Connect Sequence Explained](#the-connect-sequence-explained)
 
+[Return to README](README.md)
+
 ## Type c - Connect
 
 Simply, type `c` is a bi-directional exchange of headers between client and server.

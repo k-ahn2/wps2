@@ -16,6 +16,8 @@ Batch Variants
 2. [Type cpedb - Channel Post Edit Batch](#type-cpedb---channel-post-edit-batch)
 3. [Type cpemb - Channel Post Emoji Batch](#type-cpemb---channel-post-emoji-batch)
 
+[Return to README](/README.md)
+
 ## Type cp - Channel Post
 
 ### Client to Server
