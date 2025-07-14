@@ -51,43 +51,6 @@ END PORT
 ### BPQ Config with Callsign and NETROM
 `APPLICATION 1,WPS,C 8 HOST 0 TRANS,MB7NPW-9,WTSPAC,200,WTSPAC`
 
-<<<<<<< HEAD
-```
-APPLICATION 6,SYSINFO,C 9 HOST 2 NOCALL K S
-                |       |    |   | |      | |
-                |       |    |   | |      | Return to node upon exit (omit if giving app its own NODECALL-#)
-                |       |    |   | |      Keep-alive to prevent premature exit of application
-                |       |    |   | Do not pass call sign to app (omit if you want it via stdin)
-                |       |    |   CMDPORT #
-                |       |    Localhost
-                |       Connect to Telnet PORT #
-                App name entered at user prompt
-```
-
-## Sending a JSON object to WPS - A Javascript Example
-
-With an open channel to WPS, connected applications should:
-1. Convert the JSON object to a string via `JSON.stringify` (Javascript), `json.dumps` (Python) or equivalent
-2. Add a `chr(13)` or `\r` or `0x0D` or equivalent, then send.
-
-Javascript Example:
-
-```javascript
-const sendConnectString = {
-   t: "c",
-   n: "Kevin",
-   c: "M0AHN",
-   lm: 123,
-   le: 456,
-   led: 789,
-   lhts: 123,
-   v: 0.44
-}
-send(`${JSON.stringify(sendConnectString)}\r`)
-```
-
-=======
->>>>>>> bb09dd7489a0c0a1141b0c629446785aa3801a73
 ## Configuring `env.json`
 
 There is no requirement to edit `env.json`to get started - the default configuration will enable WPS to run and function. Edit env.json if you:
