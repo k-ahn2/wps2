@@ -40,7 +40,7 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 
 ## Other Capabilities
 - **Compression:** WPS compresses every packet before sending, then sends whichever of the compressed or uncompressed version is shorter
-- **Data Batching:** WPS batches bulk post downloads, optimising compression and delivery
+- **Data Batching:** WPS batches bulk post and message downloads, optimising compression and delivery
 - **Logging:** WPS includes error logging by default, with extensive info logging configurable if required
 - **Run as Service:** WPS runs as a standard linux service (and assume could on Windows too)
 
