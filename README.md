@@ -1,10 +1,10 @@
 # WPS - A Messaging Service and Protocol for Packet Radio
 
-WPS is a backend service and Layer 7 application protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
+WPS is a backend service and Layer 7 application protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications. 
 
-WPS was built specifically to enable the functionality in the WhatsPac front end, but could be used by any Packet Radio messaging application that implements its protocol
+WPS was built specifically to enable the functionality in the WhatsPac front end, but could be used by any Packet Radio messaging application that implements its protocol.
 
-WPS is capable of operating effectively over 1200 baud links or greater and without any internet dependency.
+WPS is capable of operating effectively without any internet dependency over link speeds of 1200 baud, albeit 2400 or greater links are recommended. 
 
 WPS runs entirely in Python, starts with just three files, has minimal dependencies, minimal setup and runs with single command. It can be run manually or as a service
 
