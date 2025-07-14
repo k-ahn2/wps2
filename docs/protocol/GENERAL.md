@@ -10,7 +10,7 @@
 7. [Type u - User Updates](#type-u---user-updates)
 8. [The Connect Sequence Explained](#the-connect-sequence-explained)
 
-[Return to README](README.md)
+[Return to README](/README.md)
 
 ## Type c - Connect
 
