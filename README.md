@@ -67,12 +67,9 @@ As an example, the sequence for a new message is:
 3. WPS returns a delivery receipt to the sender. 
 4. WPS then decides:
    - if the recipient is connected, send in real-time
-   - if the recipient is not connected, check whether registered for push notifications, send if yes
+   - if the recipient is not connected, check whether registered for push notifications, send one if yes
    - if the recipient is not registered, end processing
 5. If not sent in real-time, when the recipient connects and sends a type `c` JSON object, WPS will then return the new message(s)
-
-> [!IMPORTANT]
-> WPS uses timestamps extensively. A post sent by a user will use the client timestamp on both client, server and destination user's database. If the sending user's clock is materially incorrect, WPS may incorrectly sort messages and you may encounter issues with certain functions. 
 
 ## Timestamps and Delivery Sequence
 
