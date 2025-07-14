@@ -18,7 +18,16 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 4. [How WPS Works - An Overview](#how-wps-works---an-overview)
 5. [Timestamps and Delivery Sequence](#timestamps-and-delivery-sequence)
 6. [How WPS handles JSON](#how-wps-handles-json)
-7. [WPS Installation and Protocol Documentation](#wps-installation-and-protocol-documentation)
+
+## WPS Installation and Protocol Documentation
+
+Links to the documentation in the `/docs` directory
+
+1. [Installation](docs/installation/INSTALLATION.md)
+2. [Protocol - General](docs/protocol/GENERAL.md)
+3. [Protocol - Channels](docs/protocol/CHANNELS.md)
+4. [Protocol - Messages](docs/protocol/MESSAGES.md)
+
 
 ## WPS Schematic
 <img src="wps.jpg" alt="blah" width="500px"/>
@@ -113,11 +122,3 @@ The only exceptions to the above are the first and second strings received:
 > <br> 4. JSON compresses well due to its repetitive use of certain characters. Overall compression typically achieves up to a 40% reduction in packet length
 > <br><br>WPS could easily add support for a different payload construct without material effort. It already recognises and supports two payload types - compressed and native JSON
 
-## WPS Installation and Protocol Documentation
-
-Links to the documentation in the `/docs` directory
-
-1. [Installation](docs/installation/INSTALLATION.md)
-2. [Protocol - General](docs/protocol/GENERAL.md)
-3. [Protocol - Channels](docs/protocol/CHANNELS.md)
-4. [Protocol - Messages](docs/protocol/MESSAGES.md)
