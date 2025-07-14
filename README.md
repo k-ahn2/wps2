@@ -81,7 +81,7 @@ Timestamps are used extensively in the design of WPS:
 - When downloading new posts, either on connect, subscribe or in real time, WPS always sends Posts and Messages in timestamp ASCENDING order - i.e. oldest first. This ensures if a user gets disconnected, the client can resume from the last message
 
 > [!WARNING]
-> WPS works on the assumption that modern OSs have time syncronisation and therefore accurate clocks. Beware if offline or time syncronisation is not live that sending a posts with an incorrect system clock could cause strange behaviours
+> WPS works on the assumption that modern OSs have time syncronisation and therefore accurate clocks. Beware if offline or time syncronisation is not setup that sending a posts with an incorrect system clock could cause strange behaviours
 
 ## How WPS handles JSON
 
