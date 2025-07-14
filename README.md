@@ -1,6 +1,6 @@
 # WPS - A Messaging Service and Protocol for Packet Radio
 
-WPS is a backend service and Level 7 application protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
+WPS is a backend service and Layer 7 application protocol that provides messaging services over Packet Radio. Currently built to be published via a BPQ or Xrouter node, WPS is directly exposed to the AX:25 packet network and can be systematically accessed by end user applications that implement its protocol. 
 
 WPS was built specifically to enable the functionality in the WhatsPac front end, but implements a protocol that could be used by any Packet Radio messaging application.
 
