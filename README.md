@@ -31,7 +31,7 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 - **Emojis:** Include and react to messages and posts with Emojis
 - **Edits:** Edit messages and posts after sending
 - **Auto Registration:** New users are automatically registered upon connecting
-- **Push Notifications:** Send push notfications when there is new activity (if paired with the Packet Alerts app, currently via WhatsPac only)
+- **Push Notifications:** Send push notfications when there is new activity (required integration with a Push notification service)
 - **Callsign Lookup:** Enquire a callsign is registered
 - **Name Change:** WPS distrbutes display name updates, if changed
 - **Last Seen Times:** See when users you have messaged were last connected
