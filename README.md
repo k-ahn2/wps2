@@ -4,7 +4,7 @@ WPS is a backend service and Layer 7 application protocol that provides messagin
 
 WPS was built specifically to enable the functionality in the WhatsPac front end, but could be used by any Packet Radio messaging application that implements its protocol.
 
-WPS is capable of operating effectively without any internet dependency over link speeds of 1200 baud, albeit 2400 baud or greater links are recommended. 
+WPS is capable of operating effectively without any internet dependency over link speeds of 1200 baud, albeit the latest 2400 and 3600 baud speeds offered by the NinoTNC are typically used and are the recommended minimum.
 
 WPS runs entirely in Python, starts with just three files, has minimal dependencies, minimal setup and runs with single command. It can be run manually or as a service
 
