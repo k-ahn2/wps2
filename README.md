@@ -19,7 +19,7 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 5. [Timestamps and Delivery Sequence](#timestamps-and-delivery-sequence)
 6. [How WPS handles JSON](#how-wps-handles-json)
 
-## WPS Installation and Protocol Documentation
+### WPS Installation and Protocol Documentation
 
 Links to the documentation in the `/docs` directory
 
