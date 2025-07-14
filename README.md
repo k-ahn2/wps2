@@ -47,7 +47,7 @@ Links to the documentation in the `/docs` directory
 - **Delivery Receipts:** WPS responds to new and edited messages and posts with a delivery receipt, guaranteeing server delivery
 - **Version Control:** Advise the client a new software version is available, configurable within WPS in real-time
 
-## Other Capabilities
+## Server Capabilities
 - **Compression:** WPS compresses every packet before sending, then sends whichever of the compressed or uncompressed version is shorter
 - **Data Batching:** WPS batches bulk post and message downloads, optimising compression and delivery
 - **Logging:** WPS includes error logging by default, with extensive info logging configurable if required
