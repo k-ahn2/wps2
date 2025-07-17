@@ -53,10 +53,12 @@ END PORT
 
 ## Configuring `env.json`
 
-There is no requirement to edit `env.json`to get started - the default configuration will enable WPS to run and function. Edit env.json if you:
+There is no requirement to edit `env.json`to get started - the default configuration will enable WPS to run and function. Edit `env.json` if you:
 - Change the TCP Port
 - Increase WPS Applciation or Database logging
 - Configure notifications 
+
+Any new keys should be added to `env.py`, which will automatically add them to `env.json` on startup. 
 
 | Parameter | Data Type | Default | Notes |
 | - | :-: | :-: | :- |
@@ -100,6 +102,7 @@ There is no requirement to edit `env.json`to get started - the default configura
 |`wps.log`|Application logging, default ERROR only|
 |`db.log`|Database logging, default ERROR only|
 |`backup.py`|Run to create a JSON file containing every user, message and post object in the database. Reads `env.json` to determine the database filename from `dbFilename`. Any Sqlite supported backup method would be valid|
+|`env.py`|Used to create env.json with a default configuration if it doesn't exist, or, check all required keys are present and add any new or that are missing|
 |`env.json`|Environment configuration variables|
 
 ## Sending a JSON object to WPS - A Javascript Example

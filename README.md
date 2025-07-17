@@ -6,7 +6,7 @@ WPS was built specifically to enable the functionality in the WhatsPac front end
 
 WPS is capable of operating effectively without any internet dependency over link speeds of 1200 baud, albeit the latest 2400 and 3600 baud speeds offered by the NinoTNC are typically used and are the recommended minimum.
 
-WPS runs entirely in Python, starts with just three files, has minimal dependencies, minimal setup and runs with single command. It can be run manually or as a service
+WPS runs entirely in Python, starts with just three files, has minimal dependencies, minimal setup and runs with single command. It can be run manually or as a service.
 
 > [!IMPORTANT]
 > WPS is in active development and is changing on a regular basis - please remember to watch the repo to be alerted when there are new versions
@@ -15,9 +15,10 @@ WPS runs entirely in Python, starts with just three files, has minimal dependenc
 1. [WPS Schematic](#wps-schematic)
 2. [Key functions](#key-functions)
 3. [Server Capabilities](#server-capabilities)
-4. [How WPS Works - An Overview](#how-wps-works---an-overview)
-5. [Timestamps and Delivery Sequence](#timestamps-and-delivery-sequence)
-6. [How WPS handles JSON](#how-wps-handles-json)
+4. [Future](#future)
+5. [How WPS Works - An Overview](#how-wps-works---an-overview)
+6. [Timestamps and Delivery Sequence](#timestamps-and-delivery-sequence)
+7. [How WPS handles JSON](#how-wps-handles-json)
 
 ### WPS Installation and Protocol Documentation
 
@@ -62,7 +63,7 @@ Links to the documentation in the `/docs` directory
 WPS is designed for system access only - it does not provide a human interface for direct user access. To connect to WPS:
 
 1. An application opens an AX:25 connection to the node hosting WPS
-2. The application sends `WPS` (or whichever name configured) and the node opens the TCP connection to WPS. WPS expects the first string to be the connecting users callsign 
+2. The application sends `WPS` (or whichever name configured) and the node opens the TCP connection to WPS. WPS expects the first string to be the connecting user's callsign 
 3. The application then sends JSON compatible with the WPS Protocol and returns the corresponding JSON in response
 
 > [!TIP]
@@ -73,42 +74,41 @@ WPS is a reactive service - activity is only triggered upon receipt of an instru
 As an example, the sequence for a new message is:
 1. WPS receives a type `m` JSON object from a connected application, meaning a new message
 2. WPS writes the message to the database
-3. WPS returns a delivery receipt to the sender. 
+3. WPS returns a delivery receipt to the connected application. 
 4. WPS then decides:
    - if the recipient is connected, send in real-time
-   - if the recipient is not connected, check whether registered for push notifications, send one if yes
+   - if the recipient is not connected, check whether registered for push notifications, send one if yes (NB: requires additional integrations)
    - if the recipient is not registered, end processing
 5. If not sent in real-time, when the recipient connects and sends a type `c` JSON object, WPS will then return the new message(s)
 
 ## Timestamps and Delivery Sequence
 
 Timestamps are used extensively in the design of WPS:
-- Due to the potential variability in the RF packet network - where delivery times to the server can very depending on the number of hops, traffic and/or network drop outs - the timestamp assigned to a message or post when sent by the client is the authority used on both the server and all recipients. This ensures the sequencing of posts and messages remains as intended by the sender
+- Due to the potential variability within the RF packet network - where delivery times to the server can very depending on the number of hops, traffic and/or network drop outs - the timestamp assigned to a message or post by a connected application is used on both the server and all recipients. This ensures the sequencing of posts and messages remains as intended by the sender
 - For Posts, the timestamp is also used to:
   - tell the sender how long a message took to reach the WPS by returning the server delivery timestamp `dts` to the client
   - tell connected recipients of a post the end-to-end delivery time, calculated by comparing the `ts` of the post to the timestamp it was received
 - When downloading new posts, either on connect, subscribe or in real time, WPS always sends Posts and Messages in timestamp ASCENDING order - i.e. oldest first. This ensures if a user gets disconnected, the client can resume from the last message
 
 > [!WARNING]
-> WPS works on the assumption that modern OSs have time syncronisation and therefore accurate clocks. Beware if offline or time syncronisation is not setup that sending a posts with an incorrect system clock could cause strange behaviours
+> WPS works on the assumption that modern OSs have time syncronisation and therefore accurate clocks. Beware if offline or time syncronisation is not setup that sending posts and messages with an incorrect system clock could cause issues with certain functions
 
 ## How WPS handles JSON
 
-WPS receives everything from the packet network and node as a string, with discreet packets delimited by `0x0D` (13 decimal), Additional delimiters are used for compressed packets. 
+WPS receives everything from the packet network and node as a string, with discreet packets delimited by `\r\n` (13 decimal & 10 decimal), Additional delimiters are used for compressed packets. 
 
 WPS preprocesses received strings by:
 - adding the string to an RX buffer
-- splits the buffer on `0x0D` into an array
+- splits the buffer on `\r\n` into an array
 - for each string in the array:
    - if enclosed in compression delimiters, attempt decompression
    - if enclosed in `{}`, attempt conversion to a JSON object
-   - if last in the array and is neither, return the string to the buffer
-- If either of the decompression or JSON conversion fails, this is considered a FATAL error and WPS disconnects the user
+   - if last in the array and is neither, it's imcomplete and is returned to the RX buffer, awaiting the next packet
 
-In the event of conversion failure, WPS will log an `ERROR` in `wps.log`
+If either of the decompression and/or JSON conversion fails, this is considered a FATAL error and WPS disconnects the user and log an `ERROR` in `wps.log`
 
 The only exceptions to the above are the first and second strings received:
-- The first string recieved is always the callsign - e.g. `M0AHN\r`. This is sent by the node and happens before any subsequent processing
+- The first string recieved is always the callsign - e.g. `M0AHN\r\n`. This is sent by the node and happens before any subsequent processing
 - If the second string fails conversion, this is likely a manual connect by a human. WPS returns a friendly message (configurable in `wps.py`) and then disconnects
 
 > [!IMPORTANT]
